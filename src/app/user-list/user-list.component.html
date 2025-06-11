@@ -1,0 +1,52 @@
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="text-primary">Lista de Usuarios</h2>
+    <button routerLink="new" class="btn btn-success">Crear nuevo usuario</button>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover align-middle">
+      <thead >
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Email</th>
+        <th scope="col">Password</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Cuenta</th>
+        <th scope="col">Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let dato of users">
+        <th scope="row">{{ dato.id }}</th>
+        <td>{{ dato.email }}</td>
+        <td>{{ dato.password }}</td>
+        <td>
+          @if (dato.profile === null) {
+            <span class="text-muted">NA</span>
+          } @else {
+            {{ dato.profile.name }}
+          }
+        </td>
+        <td>
+          <ul class="mb-0 ps-3">
+            <li *ngFor="let cuenta of dato.accounts">{{ cuenta.number }}</li>
+          </ul>
+        </td>
+        <td>
+          <div class="d-flex gap-2 flex-wrap">
+            <button [routerLink]="['view-user', dato.id]" class="btn btn-sm btn-primary">Ver</button>
+            <button (click)="deleteUser(dato.id)" class="btn btn-sm btn-danger">Eliminar</button>
+            <button [routerLink]="['edit-user', dato.id]" class="btn btn-sm btn-warning text-white">Editar</button>
+<!--            <button routerLink="new-account" class="btn btn-success">Crear cuenta</button>-->
+            <button [routerLink]="['new-account', dato.id]" class="btn btn-sm btn-outline-secondary">
+              Crear cuenta
+            </button>
+
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
