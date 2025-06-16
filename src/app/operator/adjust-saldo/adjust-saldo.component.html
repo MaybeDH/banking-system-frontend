@@ -1,0 +1,111 @@
+<p>adjust-saldo works!</p>
+<div class="container my-5">
+  <!-- Título principal -->
+  <h1 class="text-primary fw-bold fs-2">Modificar Saldos</h1>
+  <p class="text-muted">Ajusta el saldo de cuentas bancarias</p>
+
+  <!-- Formulario de Ajuste -->
+  <div class="card mx-auto my-4" style="max-width: 768px;">
+    <div class="card-header d-flex align-items-center text-warning">
+      🧮 <span class="ms-2 fw-semibold">Ajuste de Saldo</span>
+    </div>
+    <div class="card-body">
+      <p class="text-muted">Modifica el saldo de una cuenta por motivos administrativos</p>
+
+      <form>
+        <div class="mb-3">
+          <label for="accountNumber" class="form-label">Número de Cuenta</label>
+          <input type="text" class="form-control" id="accountNumber" placeholder="1234-5678-9012-3456">
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="adjustmentType" class="form-label">Tipo de Ajuste</label>
+            <select class="form-select" id="adjustmentType">
+              <option selected disabled>Selecciona el tipo</option>
+              <option value="increase">Aumentar Saldo</option>
+              <option value="decrease">Reducir Saldo</option>
+            </select>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="amount" class="form-label">Monto</label>
+            <input type="number" class="form-control" id="amount" placeholder="0.00" min="0.01" step="0.01">
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="reason" class="form-label">Motivo del Ajuste</label>
+          <select class="form-select" id="reason">
+            <option selected disabled>Selecciona el motivo</option>
+            <option value="error-correction">Corrección de Error</option>
+            <option value="administrative">Ajuste Administrativo</option>
+            <option value="fee-reversal">Reversión de Comisión</option>
+            <option value="interest-adjustment">Ajuste de Intereses</option>
+            <option value="other">Otro</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="description" class="form-label">Descripción Detallada</label>
+          <textarea class="form-control" id="description" rows="4" placeholder="Describe el motivo del ajuste en detalle..."></textarea>
+        </div>
+
+        <div class="alert alert-warning d-flex align-items-center" role="alert">
+          ⚠️ Los ajustes de saldo quedan registrados en el historial de la cuenta y requieren autorización.
+        </div>
+
+        <div class="d-flex justify-content-end gap-2">
+          <button type="button" class="btn btn-outline-secondary">Cancelar</button>
+          <button type="submit" class="btn btn-danger">🧮 Continuar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Vista de Confirmación (otra pantalla, solo HTML con datos duros) -->
+  <h1 class="text-primary fw-bold fs-2">Confirmar Ajuste de Saldo</h1>
+  <p class="text-muted">Revisa los detalles antes de confirmar</p>
+
+  <div class="card mx-auto my-4" style="max-width: 768px;">
+    <div class="card-header d-flex align-items-center text-warning">
+      ✅ <span class="ms-2 fw-semibold">Detalles del Ajuste</span>
+    </div>
+    <div class="card-body">
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label class="form-label text-muted">Cuenta</label>
+          <p class="fw-medium">1234-5678-9012-3456</p>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label text-muted">Tipo de Ajuste</label>
+          <p class="fw-medium">Aumentar Saldo</p>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label class="form-label text-muted">Monto</label>
+          <p class="fs-4 fw-bold text-primary">+$1,000.00</p>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label text-muted">Motivo</label>
+          <p class="fw-medium">Ajuste Administrativo</p>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label text-muted">Descripción</label>
+        <p class="fw-medium">Ajuste debido a un error de contabilización en el sistema anterior.</p>
+      </div>
+
+      <div class="alert alert-danger d-flex align-items-center" role="alert">
+        ⚠️ Esta acción modificará permanentemente el saldo de la cuenta. Asegúrate de que los datos sean correctos.
+      </div>
+
+      <div class="d-flex justify-content-end gap-2">
+        <button type="button" class="btn btn-outline-secondary">Cancelar</button>
+        <button type="button" class="btn btn-danger">🧮 Confirmar Ajuste</button>
+      </div>
+    </div>
+  </div>
+</div>
