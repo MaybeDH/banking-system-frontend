@@ -1,15 +1,50 @@
 .app-container {
   display: flex;
-  min-height: calc(100vh - 100px); /* ajusta si navbar/footer ocupan espacio */
+  min-height: 100vh;
 }
 
 app-sidebar {
-  width: 220px; /* o 250px según tu diseño */
-  flex-shrink: 0;
+  width: 220px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1000;
+  background-color: #fff;
+}
+
+.content-wrapper {
+  flex-grow: 1;
+  margin-left: 220px; /* espacio para sidebar */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+app-navbar {
+  position: fixed;
+  top: 0;
+  left: 220px; /* espacio para sidebar */
+  right: 0;
+  height: 60px;
+  z-index: 999;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
 }
 
 .main-content {
   flex-grow: 1;
-  padding: 20px;
+  margin-top: 5px;
+  padding: 32px; /* más espacio interno */
   overflow-x: auto;
+}
+
+
+app-footer {
+  left: 300px; /* espacio para sidebar */
+  right: 0;
+  height: 60px;
+  margin-left: 15px;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
 }

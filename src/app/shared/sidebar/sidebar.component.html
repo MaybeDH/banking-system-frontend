@@ -1,73 +1,135 @@
 <aside class="sidebar">
-  <ul *ngIf="isClient()">
-    <li><a routerLink="/client/dashboard">Inicio</a></li>
-    <li><a routerLink="/client/accounts">Mis cuentas</a></li>
-    <li><a routerLink="/client/beneficiaries">Beneficiarios</a></li>
-    <li><a routerLink="/client/transfer">Transferencia</a></li>
-  </ul>
-
-  <ul *ngIf="isAdmin()">
-    <li><a routerLink="/admin/dashboard">Dashboard</a></li>
-    <li><a routerLink="/admin/users">Usuarios</a></li>
-    <li><a routerLink="/admin/accounts">Cuentas</a></li>
-    <li><a routerLink="/admin/profiles">Perfiles</a></li>
-  </ul>
-
-  <ul *ngIf="isOperator()">
-    <li><a routerLink="/operator/dashboard">Inicio</a></li>
-    <li><a routerLink="/operator/transactions">Transacciones</a></li>
-    <li><a routerLink="/operator/adjust-saldo">Ajuste de saldo</a></li>
-  </ul>
-  <!-- sidebar.component.html -->
-  <div class="d-flex flex-column bg-light border-end" style="width: 250px; height: 100vh;">
+  <div class="sidebar-container">
     <!-- Encabezado del Sidebar -->
-    <div class="d-flex align-items-center p-3 border-bottom">
-      <i class="bi bi-building h4 text-primary me-2"></i>
-      <div>
-        <h2 class="h5 text-primary mb-0">Banco Digital</h2>
-        <p class="mb-0 text-muted" style="font-size: 0.75rem;">Panel Administrador</p>
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <i class="bi bi-building"></i>
+      </div>
+      <div class="sidebar-title">
+        <h2>Banco Digital</h2>
+        <p>Panel Administrador</p>
       </div>
     </div>
 
-    <!-- Contenido del Sidebar -->
-    <div class="flex-grow-1 overflow-auto">
-      <ul class="nav flex-column">
-        <!-- Grupo de Menú: Gestión de Cuentas -->
-        <li class="nav-item">
-          <h6 class="nav-link text-muted ps-3 pt-3 pb-1" style="font-size: 0.875rem;">Gestión de Cuentas</h6>
-          <ul class="nav flex-column ms-3">
-            <li class="nav-item">
-              <a class="nav-link active" href="/admin/accounts">
-                <i class="bi bi-house-door h6 me-2"></i> Dashboard
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/admin/accounts/new">
-                <i class="bi bi-plus-circle h6 me-2"></i> Crear Cuenta
-              </a>
-            </li>
-          </ul>
-        </li>
+    <div class="sidebar-content">
+      <!-- Menú para Cliente -->
+      <nav *ngIf="isClient()" class="sidebar-nav">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/client/dashboard">
+              <i class="bi bi-house-door"></i>
+              <span>Inicio</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/client/accounts">
+              <i class="bi bi-credit-card"></i>
+              <span>Mis cuentas</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/client/beneficiaries">
+              <i class="bi bi-people"></i>
+              <span>Beneficiarios</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/client/transfer">
+              <i class="bi bi-arrow-left-right"></i>
+              <span>Transferencia</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/client/profile">
+              <i class="bi bi-arrow-left-right"></i>
+              <span>Perfil</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
 
-        <!-- Grupo de Menú: Gestión de Perfiles -->
-        <li class="nav-item">
-          <h6 class="nav-link text-muted ps-3 pt-3 pb-1" style="font-size: 0.875rem;">Gestión de Perfiles</h6>
-          <ul class="nav flex-column ms-3">
-            <li class="nav-item">
-              <a class="nav-link" href="/admin/profiles">
-                <i class="bi bi-person h6 me-2"></i> Perfiles
-              </a>
-            </li>
-          </ul>
-        </li>
-      </ul>
+      <!-- Menú para Administrador -->
+      <nav *ngIf="isAdmin()" class="sidebar-nav">
+        <ul class="nav-list">
+          <!-- Panel Principal -->
+          <li class="nav-section">
+            <h6 class="section-title">Panel Principal</h6>
+            <a class="nav-link" routerLink="/admin/dashboard">
+              <i class="bi bi-speedometer2"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+
+          <!-- Gestión de Usuarios -->
+          <li class="nav-section">
+            <h6 class="section-title">Gestión de Usuarios</h6>
+            <a class="nav-link" routerLink="/admin/users">
+              <i class="bi bi-people"></i>
+              <span>Usuarios</span>
+            </a>
+            <a class="nav-link" routerLink="/admin/users/create">
+              <i class="bi bi-person-plus"></i>
+              <span>Crear Usuario</span>
+            </a>
+            <a class="nav-link" routerLink="/admin/profiles">
+              <i class="bi bi-person-badge"></i>
+              <span>Perfiles</span>
+            </a>
+          </li>
+
+          <!-- Gestión de Cuentas -->
+          <li class="nav-section">
+            <h6 class="section-title">Gestión de Cuentas</h6>
+            <a class="nav-link" routerLink="/admin/accounts">
+              <i class="bi bi-bank"></i>
+              <span>Cuentas</span>
+            </a>
+            <a class="nav-link" routerLink="/admin/accounts/create">
+              <i class="bi bi-plus-circle"></i>
+              <span>Crear Cuenta</span>
+            </a>
+          </li>
+
+          <!-- Sistema -->
+          <li class="nav-section">
+            <h6 class="section-title">Sistema</h6>
+            <a class="nav-link" routerLink="/admin/config">
+              <i class="bi bi-gear"></i>
+              <span>Configuración</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Menú para Operador -->
+      <nav *ngIf="isOperator()" class="sidebar-nav">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/operator/dashboard">
+              <i class="bi bi-house-door"></i>
+              <span>Inicio</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/operator/transactions">
+              <i class="bi bi-list-check"></i>
+              <span>Transacciones</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/operator/adjust-saldo">
+              <i class="bi bi-currency-dollar"></i>
+              <span>Ajuste de saldo</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
 
     <!-- Pie del Sidebar -->
-    <div class="p-3 border-top text-center">
-      <p class="mb-0 text-muted" style="font-size: 0.75rem;">© 2024 Banco Digital</p>
-      <p class="mb-0 text-muted" style="font-size: 0.75rem;">Todos los derechos reservados</p>
+    <div class="sidebar-footer">
+      <p>© 2024 Banco Digital</p>
+      <p>Todos los derechos reservados</p>
     </div>
   </div>
-
 </aside>

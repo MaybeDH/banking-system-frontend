@@ -1,25 +1,21 @@
-<!--<h1>APP COMPONENT</h1>-->
-<!--<app-login-form></app-login-form>-->
-
-@if(!isLoginPage){
-  <app-navbar></app-navbar>
-}
-
 @if (!isLoginPage) {
   <div class="app-container">
     <app-sidebar></app-sidebar>
-    <main class="main-content">
-      <router-outlet/>
-    </main>
-  </div>
 
+    <div class="content-wrapper">
+      <app-navbar></app-navbar>
+
+      <main class="main-content">
+        <router-outlet/>
+      </main>
+
+      <app-footer></app-footer>
+    </div>
+  </div>
 }
+
 @if (isLoginPage) {
   <div>
     <router-outlet/>
   </div>
-}
-
-@if (!isLoginPage) {
-  <app-footer></app-footer>
 }
