@@ -21,4 +21,34 @@ export const routes: Routes = [
     path: 'user-list/new-account/:userId', loadComponent:()=> import ('./account-form/account-form.component')
   },
 
+
+  {
+    path:'auth',
+    loadChildren:()=>import('./auth/auth.module').then(m=>m.AuthModule)
+  },
+  {
+    path:'admin',
+    loadChildren:()=>import('./admin/admin.module').then(m=>m.AdminModule)
+  },
+  {
+    path: 'client',
+    loadChildren: () =>
+      import('./client/client.module').then(m => m.ClientModule)
+  },
+  {
+    path: 'operator',
+    loadChildren: () =>
+      import('./operator/operator.module').then(m => m.OperatorModule)
+  },
+  // {
+  //   path: '',
+  //   redirectTo: 'auth/login',
+  //   pathMatch: 'full'
+  // },
+  // {
+  //   path: '**',
+  //   redirectTo: 'auth/login'
+  // }
+
+
 ];

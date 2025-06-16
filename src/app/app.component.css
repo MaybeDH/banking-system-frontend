@@ -1,0 +1,15 @@
+.app-container {
+  display: flex;
+  min-height: calc(100vh - 100px); /* ajusta si navbar/footer ocupan espacio */
+}
+
+app-sidebar {
+  width: 220px; /* o 250px según tu diseño */
+  flex-shrink: 0;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-x: auto;
+}
