@@ -1,8 +1,9 @@
 import { Profile } from './profile.model';
 import {Rol} from './rol.model';
+import {Account} from './account.model';
 
 export interface User {
-  userId?: number;
+  id?: number;
   email: string;
   password?: string;
   addDate?: Date;
@@ -11,5 +12,6 @@ export interface User {
   changeUser?: string;
   deleted?: boolean;
   profile?: Profile;
+  accounts?: Account[];
   rol?: Rol;
 }

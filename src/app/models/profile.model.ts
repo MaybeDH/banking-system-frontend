@@ -1,7 +1,7 @@
 export interface Profile {
   profileId?: number;
   name: string;
-  lastname: string;
+  lastName: string;
   ci: string;
   mobile: string;
   address: string;
