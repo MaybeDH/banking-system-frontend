@@ -1,11 +1,16 @@
-export interface Profile {
-  id?: number;
-  name: string;
-  lastName: string;
-  gender?: string;
-  birthday?: Date;
-  ci: string;
-  mobile: string;
-  address: string;
-  status: 'Activo' | 'Inactivo';
+import { User } from './user.model';
+
+export interface Account {
+  accountId?: number;
+  accountNumber: string;
+  currency: 'Bs' | 'Dolares';
+  type: 'Ahorros' | 'Corriente';
+  balance: number;
+  status: 'Activa' | 'Inactiva' | 'Cerrada';
+  addDate?: Date;
+  addUser?: string;
+  changeDate?: Date;
+  changeUser?: string;
+  deleted?: boolean;
+  user?: User;
 }

@@ -1,7 +1,5 @@
-export interface User {
-  id?: number;
-  email: string;
-  password: string;
-  profile?: Profile;
-  rol?: string;
+export interface Rol {
+  rolId?: number;
+  name: 'Cliente' | 'Operador' | 'Admin';
+  description?: string;
 }

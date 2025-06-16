@@ -1,11 +1,13 @@
-export interface Profile {
-  id?: number;
-  name: string;
-  lastName: string;
-  gender?: string;
-  birthday?: Date;
-  ci: string;
-  mobile: string;
-  address: string;
-  status: 'Activo' | 'Inactivo';
+import { User } from './user.model';
+import { Account } from './account.model';
+
+export interface Beneficiary {
+  beneficiaryId?: number;
+  user: User;
+  account: Account;
+  addDate?: Date;
+  addUser?: string;
+  changeDate?: Date;
+  changeUser?: string;
+  deleted?: boolean;
 }
