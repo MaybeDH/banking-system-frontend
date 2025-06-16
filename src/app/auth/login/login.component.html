@@ -1,0 +1,59 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <div class="icon-circle">🏦</div>
+      <h2 class="title">Banco Digital</h2>
+      <p class="subtitle">Ingresa a tu cuenta para continuar</p>
+    </div>
+
+    <form (ngSubmit)="login()" class="login-form">
+      <div class="form-group">
+        <label for="email">Correo electrónico</label>
+        <input
+          id="email"
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          placeholder="tu@email.com"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <div class="password-container">
+          <input
+            id="password"
+            [type]="showPassword ? 'text' : 'password'"
+            [(ngModel)]="password"
+            name="password"
+            placeholder="••••••••"
+            required
+          />
+                    <button type="button" (click)="showPassword = !showPassword">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                        <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                      </svg>
+                    </button>
+        </div>
+      </div>
+
+      <div class="error" *ngIf="error">{{ error }}</div>
+
+      <button type="submit" [disabled]="isLoading">
+        {{ isLoading ? 'Iniciando sesión...' : 'Iniciar Sesión' }}
+      </button>
+    </form>
+
+    <div class="login-demo">
+      <p>Usuarios de prueba:</p>
+      <ul>
+        <li><strong>Admin:</strong> adminbancodigital.com</li>
+        <li><strong>Cliente:</strong> clientebancodigital.com</li>
+        <li><strong>Operador:</strong> operadorbancodigital.com</li>
+        <li><strong>Contraseña:</strong> 123456</li>
+      </ul>
+    </div>
+  </div>
+</div>
