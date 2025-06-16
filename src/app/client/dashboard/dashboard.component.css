@@ -1,0 +1,137 @@
+/* Estilo general */
+:host {
+  display: block;
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  color: #0a2540;
+  background-color: #ffffff;
+}
+
+/* Titulares */
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* Texto auxiliar */
+.text-muted-foreground {
+  color: #6b7280;
+}
+
+/* Tarjetas generales */
+.bank-card {
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+/* Header de tarjetas */
+.card-header {
+  margin-bottom: 1rem;
+}
+
+.card-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+}
+
+.card-description {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+/* Contenido de tarjetas */
+.card-content {
+  margin-top: auto;
+}
+
+/* Botón estilo banco */
+.bank-button {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  background-color: #002c64;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  text-align: center;
+  font-weight: 600;
+  transition: background-color 0.3s;
+  text-decoration: none;
+}
+
+.bank-button:hover {
+  background-color: #00408a;
+}
+
+/* Botón outline */
+.btn-outline {
+  padding: 0.5rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  color: #111827;
+  background-color: white;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-outline:hover {
+  background-color: #f9fafb;
+}
+
+/* Badge de tipo de transacción */
+.bg-green-500 {
+  background-color: #10b981;
+}
+
+.bg-blue-500 {
+  background-color: #3b82f6;
+}
+
+.bg-red-500 {
+  background-color: #ef4444;
+}
+
+/* Movimiento individual */
+.transaction-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background-color: #f9fafb;
+  border-radius: 0.5rem;
+}
+
+/* Valor positivo/negativo */
+.text-green-600 {
+  color: #16a34a;
+}
+
+.text-red-600 {
+  color: #dc2626;
+}
+
+/* Responsive ajustes */
+@media (max-width: 768px) {
+  .grid {
+    display: block !important;
+  }
+
+  .bank-card {
+    margin-bottom: 1rem;
+  }
+}

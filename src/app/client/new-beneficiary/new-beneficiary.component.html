@@ -1,0 +1,63 @@
+<p>new-beneficiary works!</p>
+<div class="beneficiary-wrapper">
+  <div class="header">
+    <a href="/client/beneficiaries" class="btn-ghost">
+      ← Volver
+    </a>
+    <h1 class="title">Agregar Beneficiario</h1>
+  </div>
+
+  <div class="card">
+    <form onsubmit="event.preventDefault(); alert('Beneficiario agregado');">
+      <div class="card-header">
+        <h2 class="card-title">Información del Beneficiario</h2>
+        <p class="card-subtitle">Ingresa los datos de la persona a la que quieres enviar dinero</p>
+      </div>
+
+      <div class="form-body">
+        <!-- Nombre -->
+        <div class="form-group">
+          <label for="name">Nombre Completo</label>
+          <input type="text" id="name" placeholder="Ej. María García" value="María García" class="form-control" />
+        </div>
+
+        <!-- Correo -->
+        <div class="form-group">
+          <label for="email">Correo Electrónico (Opcional)</label>
+          <input type="email" id="email" placeholder="maria@ejemplo.com" value="maria@ejemplo.com" class="form-control" />
+        </div>
+
+        <!-- Cuenta -->
+        <div class="form-group">
+          <label for="accountNumber">Número de Cuenta</label>
+          <input type="text" id="accountNumber" placeholder="1234-5678-9012-3456" value="ES2100500001001234567891" class="form-control" />
+        </div>
+
+        <!-- Banco -->
+        <div class="form-group">
+          <label for="bank">Banco</label>
+          <select id="bank" class="form-control">
+            <option selected>Banco Nacional</option>
+            <option>Banco Digital</option>
+            <option>Banco Central</option>
+            <option>Banco Popular</option>
+            <option>Otro</option>
+          </select>
+        </div>
+
+        <!-- Documento -->
+        <div class="form-group">
+          <label for="documentId">Documento de Identidad (Opcional)</label>
+          <input type="text" id="documentId" placeholder="12345678A" value="56789012B" class="form-control" />
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <a href="/client/beneficiaries" class="btn btn-outline">Cancelar</a>
+        <button type="submit" class="btn btn-primary">
+          💾 Agregar Beneficiario
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
