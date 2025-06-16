@@ -35,3 +35,52 @@
     <button type="submit" class="btn btn-primary">Guardar cambios</button>
   </form>
 </div>
+<div class="container">
+  <header class="header">
+    <h1 class="title">Gestión de Usuarios</h1>
+    <p class="subtitle">Administra los usuarios del sistema</p>
+    <a href="/admin/users/new" class="button create-user">
+      <span class="icon">+</span> Crear Usuario
+    </a>
+  </header>
+
+  <section class="card">
+    <header class="card-header">
+      <h2 class="card-title">Usuarios</h2>
+      <p class="card-description">Lista de todos los usuarios registrados en el sistema</p>
+      <div class="search-container">
+        <input type="text" placeholder="Buscar por nombre o email..." class="search-input" />
+      </div>
+    </header>
+
+    <div class="card-content">
+      <table class="user-table">
+        <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Rol</th>
+          <th>Estado</th>
+          <th>Fecha de Creación</th>
+          <th class="actions">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>Juan Pérez</td>
+          <td>juanexample.com</td>
+          <td>Cliente</td>
+          <td>Activo</td>
+          <td>2025-06-14</td>
+          <td class="actions">
+            <button class="action-btn">Editar</button>
+            <button class="action-btn">Ver</button>
+            <button class="action-btn delete">Eliminar</button>
+          </td>
+        </tr>
+        <!-- Más filas de usuarios -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

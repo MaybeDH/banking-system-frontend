@@ -3,12 +3,14 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import {AccountService} from '../service/account.service';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-account-form',
   templateUrl: './account-form.component.html',
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgIf
   ],
   styleUrls: ['./account-form.component.css']
 })
