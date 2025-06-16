@@ -1,0 +1,85 @@
+<p>profile-list works!</p>
+<div class="container">
+  <div class="header">
+    <h1 class="title">Gestión de Perfiles</h1>
+    <p class="subtitle">Administra los perfiles de usuarios del sistema</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">Perfiles</h2>
+      <p class="card-description">Lista de todos los perfiles registrados en el sistema</p>
+      <div class="search-wrapper">
+        🔍
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Buscar por nombre, email o documento..."
+        />
+      </div>
+    </div>
+
+    <div class="card-content">
+      <table class="profile-table">
+        <thead>
+        <tr>
+          <th>Usuario</th>
+          <th>Documento</th>
+          <th>Teléfono</th>
+          <th>Dirección</th>
+          <th class="text-right">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Fila 1 -->
+        <tr>
+          <td>
+            <div class="user-info">
+              <div class="avatar">JP</div>
+              <div>
+                <div class="name">Juan Pérez</div>
+                <div class="email">juanexample.com</div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="doc-info">
+              <span class="doc-id">12345678</span>
+              <span class="doc-type">DNI</span>
+            </div>
+          </td>
+          <td>+34 612 345 678</td>
+          <td title="Calle Falsa 123, Madrid">Calle Falsa 123, Madrid</td>
+          <td class="text-right">
+            <button class="menu-btn">⋮</button>
+          </td>
+        </tr>
+
+        <!-- Fila 2 -->
+        <tr>
+          <td>
+            <div class="user-info">
+              <div class="avatar">AM</div>
+              <div>
+                <div class="name">Ana Martínez</div>
+                <div class="email">anacorreo.com</div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="doc-info">
+              <span class="doc-id">98765432</span>
+              <span class="doc-type">Pasaporte</span>
+            </div>
+          </td>
+          <td>+34 699 123 456</td>
+          <td title="Av. Siempre Viva 742, Barcelona">Av. Siempre Viva 742, Barcelona</td>
+          <td class="text-right">
+            <button class="menu-btn">⋮</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

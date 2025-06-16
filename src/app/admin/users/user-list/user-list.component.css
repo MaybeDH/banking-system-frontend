@@ -1,0 +1,138 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7fc;
+  color: #333;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2d3748;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #718096;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #3182ce;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.button:hover {
+  background-color: #2b6cb0;
+}
+
+.create-user .icon {
+  margin-right: 8px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  padding: 20px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #2d3748;
+}
+
+.card-description {
+  font-size: 1rem;
+  color: #718096;
+}
+
+.search-container {
+  margin-top: 10px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.user-table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.user-table th,
+.user-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.user-table th {
+  background-color: #edf2f7;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.user-table td {
+  font-size: 0.875rem;
+}
+
+.actions {
+  text-align: right;
+}
+
+.action-btn {
+  padding: 6px 12px;
+  margin-left: 5px;
+  background-color: #edf2f7;
+  border: 1px solid #e2e8f0;
+  border-radius: 5px;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.action-btn:hover {
+  background-color: #e2e8f0;
+}
+
+.delete {
+  background-color: #e53e3e;
+  color: white;
+}
+
+.delete:hover {
+  background-color: #c53030;
+}

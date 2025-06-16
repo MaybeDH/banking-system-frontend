@@ -1,0 +1,143 @@
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h1 class="h3 fw-bold text-primary">Gestión de Cuentas</h1>
+      <p class="text-muted">Administra las cuentas bancarias del sistema</p>
+    </div>
+    <a href="/admin/accounts/new" class="btn btn-primary d-flex align-items-center">
+      <i class="bi bi-plus-lg me-2"></i> Crear Cuenta
+    </a>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Cuentas Bancarias</h5>
+      <p class="card-text text-muted">Lista de todas las cuentas registradas en el sistema</p>
+
+      <div class="position-relative my-3">
+        <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+        <input type="text" class="form-control ps-5" placeholder="Buscar por número de cuenta o nombre..." />
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead class="table-light">
+          <tr>
+            <th>Número de Cuenta</th>
+            <th>Titular</th>
+            <th>Tipo</th>
+            <th>Moneda</th>
+            <th>Saldo</th>
+            <th>Estado</th>
+            <th class="text-end">Acciones</th>
+          </tr>
+          </thead>
+          <tbody>
+          <!-- Fila 1 -->
+          <tr>
+            <td class="fw-semibold">0101-00012345</td>
+            <td>Juan Pérez</td>
+            <td><span class="badge bg-info text-dark">Ahorros</span></td>
+            <td>USD</td>
+            <td class="fw-semibold">$1,200.00</td>
+            <td><span class="badge bg-success">Activa</span></td>
+            <td class="text-end">
+              <div class="dropdown">
+                <button
+                  class="btn btn-sm btn-outline-secondary"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-three-dots-vertical"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li>
+                    <a class="dropdown-item" href="#">
+                      <i class="bi bi-eye me-2"></i> Ver Detalles
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item text-danger" href="#">
+                      <i class="bi bi-lock me-2"></i> Inactivar Cuenta
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Fila 2 -->
+          <tr>
+            <td class="fw-semibold">0101-00067890</td>
+            <td>María López</td>
+            <td><span class="badge bg-warning text-dark">Corriente</span></td>
+            <td>EUR</td>
+            <td class="fw-semibold">€3,800.00</td>
+            <td><span class="badge bg-danger">Inactiva</span></td>
+            <td class="text-end">
+              <div class="dropdown">
+                <button
+                  class="btn btn-sm btn-outline-secondary"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-three-dots-vertical"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li>
+                    <a class="dropdown-item" href="#">
+                      <i class="bi bi-eye me-2"></i> Ver Detalles
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item text-danger" href="#">
+                      <i class="bi bi-lock me-2"></i> Inactivar Cuenta
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Fila 3 -->
+          <tr>
+            <td class="fw-semibold">0101-00099999</td>
+            <td>Pedro Gómez</td>
+            <td><span class="badge bg-secondary">Plazo Fijo</span></td>
+            <td>BOB</td>
+            <td class="fw-semibold">Bs. 15,000.00</td>
+            <td><span class="badge bg-success">Activa</span></td>
+            <td class="text-end">
+              <div class="dropdown">
+                <button
+                  class="btn btn-sm btn-outline-secondary"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-three-dots-vertical"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li>
+                    <a class="dropdown-item" href="#">
+                      <i class="bi bi-eye me-2"></i> Ver Detalles
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item text-danger" href="#">
+                      <i class="bi bi-lock me-2"></i> Inactivar Cuenta
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          <!-- Más filas si se desea -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
