@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class AccountService {
-  private apiUrl = 'http://localhost:8080/account';
+  private apiUrl = 'http://localhost:8080/accounts';
   constructor(private http: HttpClient) { }
 
   getAccount(): Observable<Account[]> {
@@ -25,8 +25,9 @@ export class AccountService {
   deleteAccount(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
-  getAccountsByUserId(userId: number): Observable<Account[]> {
-    return this.http.get<Account[]>(`${this.apiUrl}/${userId}`);
+  getAccountsByUserId(userId: number): Observable<{ accounts: Account[], totalBalance: number }> {
+    return this.http.get<{ accounts: Account[], totalBalance: number }>(
+      `${this.apiUrl}/user/${userId}`);
   }
 
 }
