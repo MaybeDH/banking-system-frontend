@@ -3,7 +3,7 @@ import {Rol} from './rol.model';
 import {Account} from './account.model';
 
 export interface User {
-  id?: number;
+  id: number;
   email: string;
   password?: string;
   addDate?: Date;

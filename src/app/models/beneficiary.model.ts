@@ -5,9 +5,6 @@ export interface Beneficiary {
   beneficiaryId?: number;
   user: User;
   account: Account;
-  addDate?: Date;
-  addUser?: string;
-  changeDate?: Date;
-  changeUser?: string;
-  deleted?: boolean;
+  // addUser?: string;
+  // changeUser?: string;
 }
