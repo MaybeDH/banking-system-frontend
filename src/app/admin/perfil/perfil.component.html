@@ -1,0 +1,148 @@
+<p>perfil works!</p>
+
+<div class="container mt-4">
+  <div class=" d-flex justify-content-between align-items-center">
+
+    <div>
+      <h1 class="h3 fw-bold text-primary">Mi Perfil</h1>
+      <p class="text-muted">Información personal y detalles de tu cuenta</p>
+    </div>
+    <button routerLink='editPerfil' class="btn btn-primary d-flex align-items-center">
+      Editar
+    </button>
+  </div>
+
+  @if (user){
+    <div class="row g-4 mb-5">
+      <!-- Información Principal -->
+      <div class="col-md-8">
+        <div class="card h-100 p-3">
+          <div class="d-flex align-items-center gap-3 mb-4">
+            <img src="/assets/avatar-jperez.jpg" alt="Juan Pérez" class="rounded-circle perfil-avatar" />
+            <div>
+              <h4 class="mb-0">{{user.profile?.name}} {{user.profile?.lastName}}</h4>
+              <p class="text-muted mb-1">{{user.email}}</p>
+              <span class="badge bg-success">{{user.rol?.name}}</span>
+              <span class="badge bg-success">{{user.profile?.status}}</span>
+            </div>
+          </div>
+
+          <!-- Información Personal -->
+          <div class="mb-4">
+            <h5 class="fw-semibold">Información Personal</h5>
+            <div class="row g-3 mt-2">
+              <div class="col-md-6 d-flex align-items-start gap-2">
+                <i class="bi bi-person text-muted"></i>
+                <div>
+                  <p class="mb-0 fw-medium small">Nombre Completo</p>
+                  <p class="text-muted small">{{user.profile?.name}} {{user.profile?.lastName}}</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 d-flex align-items-start gap-2">
+                <i class="bi bi-envelope text-muted"></i>
+                <div>
+                  <p class="mb-0 fw-medium small">Correo Electrónico</p>
+                  <p class="text-muted small">{{user.email}}</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 d-flex align-items-start gap-2">
+                <i class="bi bi-telephone text-muted"></i>
+                <div>
+                  <p class="mb-0 fw-medium small">Teléfono</p>
+                  <p class="text-muted small">{{user.profile?.mobile}}</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 d-flex align-items-start gap-2">
+                <i class="bi bi-calendar text-muted"></i>
+                <div>
+                  <p class="mb-0 fw-medium small">Fecha de Nacimiento</p>
+                  <p class="text-muted small">12/04/1988</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr />
+
+          <!-- Información de Contacto -->
+          <div class="mb-4">
+            <h5 class="fw-semibold">Información de Contacto</h5>
+            <div class="d-flex align-items-start gap-2 mt-2">
+              <i class="bi bi-geo-alt text-muted mt-1"></i>
+              <div>
+                <p class="mb-0 fw-medium small">Dirección</p>
+                <p class="text-muted small">{{user.profile?.address}}</p>
+              </div>
+            </div>
+          </div>
+
+          <hr />
+
+          <!-- Documentación -->
+          <div>
+            <h5 class="fw-semibold">Documentación</h5>
+            <div class="row g-3 mt-2">
+              <div class="col-md-6 d-flex align-items-start gap-2">
+                <i class="bi bi-shield-lock text-muted"></i>
+                <div>
+                  <p class="mb-0 fw-medium small">Tipo de Documento</p>
+                  <p class="text-muted small">CI</p>
+                </div>
+              </div>
+              <div class="col-md-6 d-flex align-items-start gap-2">
+                <i class="bi bi-credit-card text-muted"></i>
+                <div>
+                  <p class="mb-0 fw-medium small">Número de Documento</p>
+                  <p class="text-muted small">{{user.profile?.ci}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Información de la Cuenta -->
+      <div class="col-md-4">
+        <div class="card h-100 p-3">
+          <h5>Información de la Cuenta</h5>
+          <div class="mt-3 small">
+            <p class="fw-medium mb-1">Cliente desde</p>
+            <p class="text-muted">{{user.addDate}}</p>
+
+            <hr />
+
+            <p class="fw-medium mb-1">Cuentas Activas</p>
+            <p class="text-muted ps-2">
+              {{ cuentasActivas.length }} cuenta{{ cuentasActivas.length === 1 ? '' : 's' }}
+            </p>
+            <ul class="list-unstyled ps-2">
+              <li *ngFor="let cuenta of cuentasActivas">
+                <i class="bi bi-credit-card me-2 text-secondary"></i>{{ cuenta.accountNumber }}
+              </li>
+            </ul>
+
+
+            <hr />
+
+            <p class="fw-medium mb-1">Último Acceso</p>
+            <p class="text-muted">13/06/2025 14:22</p>
+
+            <hr />
+
+            <p class="fw-medium mb-1">Estado de la Cuenta</p>
+            <span class="badge bg-success">Verificada</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  } @else {
+    <p>Cargando perfil...</p>
+  }
+
+</div>

@@ -1,0 +1,180 @@
+<p>edit-profile works!</p>
+<div class="space-y-6">
+  <div class="d-flex align-items-center">
+<!--    <button class="btn btn-outline-primary btn-sm me-2" [routerLink]="['/admin/users', userId, 'profile']">-->
+    <button class="btn btn-outline-primary btn-sm me-2" >
+      <i class="bi bi-arrow-left h-4 w-4 me-2"></i>
+      Volver al Perfil
+    </button>
+    <h1 class="text-3xl font-bold text-primary">Editar Usuario Completo</h1>
+  </div>
+
+<!--  <div class="row g-6">-->
+<!--    &lt;!&ndash; Formulario Principal &ndash;&gt;-->
+<!--    <div class="col-lg-9">-->
+<!--      <div class="card">-->
+<!--        <form (ngSubmit)="handleSubmit()">-->
+<!--          <div class="card-header">-->
+<!--            <div class="d-flex align-items-center">-->
+<!--              <div class="avatar">-->
+<!--                <img class="rounded-circle" [src]="userData.avatar || '/placeholder.svg'" alt="{{ fullName }}" />-->
+<!--              </div>-->
+<!--              <div>-->
+<!--                <h5>Editar Usuario: {{ fullName }}</h5>-->
+<!--                <p>Profile ID: {{ profile.profileId }}</p>-->
+<!--                <span class="badge bg-primary">{{ userData.role }}</span>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="card-body">-->
+<!--            &lt;!&ndash; Información Personal &ndash;&gt;-->
+<!--            <div>-->
+<!--              <h3 class="text-lg font-semibold mb-4">Información Personal</h3>-->
+<!--              <div class="row g-4">-->
+<!--                <div class="col-md-6">-->
+<!--                  <label for="name" class="form-label">Nombre *</label>-->
+<!--                  <input id="name" name="name" [(ngModel)]="formData.name" class="form-control" />-->
+<!--                </div>-->
+<!--                <div class="col-md-6">-->
+<!--                  <label for="lastname" class="form-label">Apellido *</label>-->
+<!--                  <input id="lastname" name="lastname" [(ngModel)]="formData.lastname" class="form-control" />-->
+<!--                </div>-->
+<!--                <div class="col-md-6">-->
+<!--                  <label for="ci" class="form-label">CI / Documento *</label>-->
+<!--                  <input id="ci" name="ci" [(ngModel)]="formData.ci" class="form-control" />-->
+<!--                </div>-->
+<!--                <div class="col-md-6">-->
+<!--                  <label for="documentType" class="form-label">Tipo de Documento</label>-->
+<!--                  <select id="documentType" class="form-select" [(ngModel)]="formData.documentType">-->
+<!--                    <option value="DNI">DNI</option>-->
+<!--                    <option value="Pasaporte">Pasaporte</option>-->
+<!--                    <option value="NIE">NIE</option>-->
+<!--                  </select>-->
+<!--                </div>-->
+<!--                <div class="col-md-6">-->
+<!--                  <label for="birthDate" class="form-label">Fecha de Nacimiento</label>-->
+<!--                  <input type="date" id="birthDate" name="birthDate" [(ngModel)]="formData.birthDate" class="form-control" />-->
+<!--                </div>-->
+<!--                <div class="col-md-6">-->
+<!--                  <label for="nationality" class="form-label">Nacionalidad</label>-->
+<!--                  <input id="nationality" name="nationality" [(ngModel)]="formData.nationality" class="form-control" />-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+
+<!--            <hr />-->
+
+<!--            &lt;!&ndash; Información de Contacto &ndash;&gt;-->
+<!--            <div>-->
+<!--              <h3 class="text-lg font-semibold mb-4">Información de Contacto</h3>-->
+<!--              <div class="row g-4">-->
+<!--                <div class="col-md-6">-->
+<!--                  <label for="email" class="form-label">Correo Electrónico *</label>-->
+<!--                  <input type="email" id="email" name="email" [(ngModel)]="formData.email" class="form-control" />-->
+<!--                </div>-->
+<!--                <div class="col-md-6">-->
+<!--                  <label for="mobile" class="form-label">Móvil</label>-->
+<!--                  <input id="mobile" name="mobile" [(ngModel)]="formData.mobile" class="form-control" />-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="mt-4">-->
+<!--                <label for="address" class="form-label">Dirección</label>-->
+<!--                <textarea id="address" name="address" [(ngModel)]="formData.address" class="form-control" rows="3"></textarea>-->
+<!--              </div>-->
+<!--            </div>-->
+
+<!--            <hr />-->
+
+<!--            &lt;!&ndash; Configuración de Cuenta &ndash;&gt;-->
+<!--            <div>-->
+<!--              <h3 class="text-lg font-semibold mb-4">Configuración de Cuenta</h3>-->
+<!--              <div class="row g-4">-->
+<!--                <div class="col-md-4">-->
+<!--                  <label for="role" class="form-label">Rol del Usuario</label>-->
+<!--                  <select id="role" class="form-select" [(ngModel)]="formData.role">-->
+<!--                    <option value="admin">Administrador</option>-->
+<!--                    <option value="operator">Operador</option>-->
+<!--                    <option value="client">Cliente</option>-->
+<!--                  </select>-->
+<!--                </div>-->
+<!--                <div class="col-md-4">-->
+<!--                  <label for="userStatus" class="form-label">Estado del Usuario</label>-->
+<!--                  <select id="userStatus" class="form-select" [(ngModel)]="formData.userStatus">-->
+<!--                    <option value="active">Activo</option>-->
+<!--                    <option value="inactive">Inactivo</option>-->
+<!--                  </select>-->
+<!--                </div>-->
+<!--                <div class="col-md-4">-->
+<!--                  <label for="status" class="form-label">Estado del Perfil</label>-->
+<!--                  <select id="status" class="form-select" [(ngModel)]="formData.status">-->
+<!--                    <option value="Activo">Activo</option>-->
+<!--                    <option value="Inactivo">Inactivo</option>-->
+<!--                  </select>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="card-footer d-flex justify-content-end gap-2">-->
+<!--            <button class="btn btn-outline-secondary" type="button" [routerLink]="['/admin/users', userId, 'profile']">Cancelar</button>-->
+<!--            <button class="btn btn-primary" type="submit" [disabled]="isSubmitting">-->
+<!--              <i *ngIf="isSubmitting" class="bi bi-arrow-repeat me-2"></i>-->
+<!--              {{ isSubmitting ? 'Actualizando...' : 'Guardar Cambios' }}-->
+<!--            </button>-->
+<!--          </div>-->
+<!--        </form>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Panel de Auditoría &ndash;&gt;-->
+<!--    <div class="col-lg-3">-->
+<!--      <div class="card">-->
+<!--        <div class="card-header">-->
+<!--          <h5 class="d-flex align-items-center gap-2">-->
+<!--            <i class="bi bi-clock h-5 w-5"></i>-->
+<!--            Auditoría-->
+<!--          </h5>-->
+<!--          <p>Información de seguimiento</p>-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--          <div>-->
+<!--            <p class="text-sm font-medium">Profile ID</p>-->
+<!--            <p class="text-sm text-muted">{{ profile.profileId }}</p>-->
+<!--          </div>-->
+
+<!--          <hr />-->
+
+<!--          <div>-->
+<!--            <p class="text-sm font-medium">Creado</p>-->
+<!--            <p class="text-sm text-muted">{{ profile.addDate | date: 'dd/MM/yyyy' }}</p>-->
+<!--            <p class="text-xs text-muted">por {{ profile.addUser }}</p>-->
+<!--          </div>-->
+
+<!--          <hr />-->
+
+<!--          <div>-->
+<!--            <p class="text-sm font-medium">Última Modificación</p>-->
+<!--            <p class="text-sm text-muted">{{ profile.changeDate | date: 'dd/MM/yyyy' }}</p>-->
+<!--            <p class="text-xs text-muted">por {{ profile.changeUser }}</p>-->
+<!--          </div>-->
+
+<!--          <hr />-->
+
+<!--          <div>-->
+<!--            <p class="text-sm font-medium">Estado de Eliminación</p>-->
+<!--            <span class="badge" [ngClass]="{'bg-danger': profile.deleted, 'bg-success': !profile.deleted}">-->
+<!--              {{ profile.deleted ? 'Eliminado' : 'Activo' }}-->
+<!--            </span>-->
+<!--          </div>-->
+
+<!--          <hr />-->
+
+<!--          <div class="text-xs text-muted">-->
+<!--            <p>* Los cambios se registrarán automáticamente</p>-->
+<!--            <p>* Usuario actual: {{ user?.email }}</p>-->
+<!--            <p>* Fecha: {{ today | date: 'dd/MM/yyyy' }}</p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+</div>
