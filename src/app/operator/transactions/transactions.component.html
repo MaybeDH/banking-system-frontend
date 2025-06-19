@@ -1,3 +1,5 @@
+
+
 <div class="container my-5">
   <h1 class="text-primary fw-bold">Transacciones Manuales</h1>
   <p class="text-muted">Procesa depósitos, retiros y transferencias</p>
@@ -27,14 +29,20 @@
         <div class="card-body">
           <p class="card-text">Agregar fondos a una cuenta bancaria</p>
 
-          <form>
+          <form [formGroup]="depositForm" (ngSubmit)="submitDeposit()">
             <div class="mb-3">
               <label for="deposit-account" class="form-label">Número de Cuenta</label>
-              <input type="text" class="form-control" id="deposit-account" placeholder="1234-5678-9012-3456">
+<!--              <input type="text" class="form-control" id="deposit-account" placeholder="1234-5678-9012-3456">-->
+              <select class="form-select" id="deposit-account" formControlName="accountId">
+                <option *ngFor="let acc of accounts" [value]="acc.accountId">
+                  {{ acc.accountNumber }} - {{ acc.type }} - {{ acc.balance }}{{acc.currency}}
+                </option>
+              </select>
+
             </div>
             <div class="mb-3">
               <label for="deposit-amount" class="form-label">Monto a Depositar</label>
-              <input type="number" class="form-control" id="deposit-amount" min="0.01" step="0.01" placeholder="0.00">
+              <input type="number" class="form-control" id="deposit-amount" min="0.01" placeholder="0.00" formControlName="amount">
             </div>
             <div class="mb-3">
               <label for="deposit-description" class="form-label">Descripción</label>
@@ -58,14 +66,22 @@
         <div class="card-body">
           <p class="card-text">Retirar fondos de una cuenta bancaria</p>
 
-          <form>
+          <form [formGroup]="withdrawalForm" (ngSubmit)="submitWithdrawal()">
             <div class="mb-3">
               <label for="withdrawal-account" class="form-label">Número de Cuenta</label>
-              <input type="text" class="form-control" id="withdrawal-account" placeholder="1234-5678-9012-3456">
+<!--              <input type="text" class="form-control" id="withdrawal-account" placeholder="1234-5678-9012-3456">-->
+              <select class="form-select" id="deposit-account" formControlName="accountId">
+
+                <option *ngFor="let acc of accounts" [value]="acc.accountId">
+                  {{ acc.accountNumber }} - {{ acc.type }} - {{ acc.balance }}{{acc.currency}}
+                </option>
+              </select>
             </div>
+
+
             <div class="mb-3">
               <label for="withdrawal-amount" class="form-label">Monto a Retirar</label>
-              <input type="number" class="form-control" id="withdrawal-amount" min="0.01" step="0.01" placeholder="0.00">
+              <input type="number" class="form-control" id="withdrawal-amount" min="0.01" step="0.01" placeholder="0.00" formControlName="amount">
             </div>
             <div class="mb-3">
               <label for="withdrawal-description" class="form-label">Descripción</label>
@@ -89,21 +105,33 @@
         <div class="card-body">
           <p class="card-text">Transferir fondos entre cuentas bancarias</p>
 
-          <form>
+          <form [formGroup]="transferForm" (ngSubmit)="submitTransfer()">
             <div class="row mb-3">
               <div class="col-md-6">
                 <label for="transfer-from" class="form-label">Cuenta Origen</label>
-                <input type="text" class="form-control" id="transfer-from" placeholder="1234-5678-9012-3456">
+<!--                <input type="text" class="form-control" id="transfer-from" placeholder="1234-5678-9012-3456">-->
+                <select class="form-select" id="deposit-account" formControlName="sourceAccountId">
+
+                  <option *ngFor="let acc of accounts" [value]="acc.accountId">
+                    {{ acc.accountNumber }} - {{ acc.type }} - {{ acc.balance }}{{acc.currency}}
+                  </option>
+                </select>
               </div>
               <div class="col-md-6">
                 <label for="transfer-to" class="form-label">Cuenta Destino</label>
-                <input type="text" class="form-control" id="transfer-to" placeholder="9876-5432-1098-7654">
+<!--                <input type="text" class="form-control" id="transfer-to" placeholder="9876-5432-1098-7654">-->
+                <select class="form-select" id="deposit-account" formControlName="targetAccountId">
+
+                  <option *ngFor="let acc of accounts" [value]="acc.accountId">
+                    {{ acc.accountNumber }} - {{ acc.type }} - {{ acc.balance }}{{acc.currency}}
+                  </option>
+                </select>
               </div>
             </div>
 
             <div class="mb-3">
               <label for="transfer-amount" class="form-label">Monto a Transferir</label>
-              <input type="number" class="form-control" id="transfer-amount" min="0.01" step="0.01" placeholder="0.00">
+              <input type="number" class="form-control" id="transfer-amount" min="0.01" step="0.01" placeholder="0.00" formControlName="amount">
             </div>
             <div class="mb-3">
               <label for="transfer-description" class="form-label">Descripción</label>

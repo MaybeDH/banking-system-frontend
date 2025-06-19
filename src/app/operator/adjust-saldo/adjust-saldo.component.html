@@ -12,16 +12,34 @@
     <div class="card-body">
       <p class="text-muted">Modifica el saldo de una cuenta por motivos administrativos</p>
 
-      <form>
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)">
         <div class="mb-3">
           <label for="accountNumber" class="form-label">Número de Cuenta</label>
-          <input type="text" class="form-control" id="accountNumber" placeholder="1234-5678-9012-3456">
+<!--          <input type="text" class="form-control" id="accountNumber" placeholder="1234-5678-9012-3456">-->
+<!--          <select class="form-select" [(ngModel)]="selectedAccountId" name="account">-->
+<!--            <option *ngFor="let acc of accounts" [value]="acc.accountId">-->
+<!--              {{ acc.accountNumber }} - {{ acc.type }} - {{ acc.balance }}{{acc.currency}}-->
+<!--            </option>-->
+<!--          </select>-->
+<!--          <select class="form-select" [(ngModel)]="selectedAccountId" name="account">-->
+<!--            <option *ngFor="let acc of accounts" [value]="acc.accountId">-->
+<!--              {{ acc.accountNumber }} - {{ acc.balance }}-->
+<!--            </option>-->
+<!--          </select>-->
+          <select class="form-select" [(ngModel)]="selectedAccountId" name="account">
+            <option *ngFor="let acc of accounts" [value]="acc.accountId">
+              {{ acc.accountNumber }} - {{ acc.balance }}
+            </option>
+          </select>
+
+
+
         </div>
 
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="adjustmentType" class="form-label">Tipo de Ajuste</label>
-            <select class="form-select" id="adjustmentType">
+            <select id="adjustmentType" class="form-select" [(ngModel)]="adjustmentType" name="adjustmentType">
               <option selected disabled>Selecciona el tipo</option>
               <option value="increase">Aumentar Saldo</option>
               <option value="decrease">Reducir Saldo</option>
@@ -29,7 +47,7 @@
           </div>
           <div class="col-md-6 mb-3">
             <label for="amount" class="form-label">Monto</label>
-            <input type="number" class="form-control" id="amount" placeholder="0.00" min="0.01" step="0.01">
+            <input type="number" class="form-control" [(ngModel)]="amount" name="amount" min="0.01" step="0.01">
           </div>
         </div>
 
@@ -56,7 +74,7 @@
 
         <div class="d-flex justify-content-end gap-2">
           <button type="button" class="btn btn-outline-secondary">Cancelar</button>
-          <button type="submit" class="btn btn-danger">🧮 Continuar</button>
+          <button type="submit" class="btn btn-danger" [disabled]="!f.valid">🧮 Continuar</button>
         </div>
       </form>
     </div>

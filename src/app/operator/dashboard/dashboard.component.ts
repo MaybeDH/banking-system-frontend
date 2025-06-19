@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {AuthService} from '../../core/services/auth/auth.service';
 interface Stat {
   title: string;
   value: string;
@@ -53,11 +54,30 @@ export class DashboardComponent implements  OnInit {
     { id: '3', type: 'Transferencia', account: '**** 9012', amount: '-$2,300.00', time: '09:45 AM', status: 'Completado' },
   ];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,private auth: AuthService) {}
+
+
+  email: string | null = null;
+  role: string | null = null;
+  name: string | null = null;
+  // initials: string = ''; // Para las iniciales del avatar
+  //
+  //
+
+
 
   ngOnInit(): void {
     if (!this.user || this.user.role !== 'operator') {
       this.router.navigate(['/']);
     }
+    const userString = localStorage.getItem('user') || '';
+    if (!userString) {
+      return ;
+    }
+    const user = JSON.parse(userString);
+    this.email = user?.email || '';
+    this.role = user?.rol.name;
+    this.name = user?.profile.name;
+
   }
 }
