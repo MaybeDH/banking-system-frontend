@@ -13,10 +13,8 @@ import {SidebarComponent} from './shared/sidebar/sidebar.component';
 export class AppComponent {
   isLoginPage = false;
 
-  title = 'Mi primera variable';
-  nombre = 'Hassel';
-  apellido = 'Cano';
-  edad :number = 19;
+
+
   constructor(private router:Router) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
