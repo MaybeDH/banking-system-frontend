@@ -15,8 +15,9 @@ export class TransactionService {
   getTransactionById(id: number): Observable<Transaction> {
     return this.http.get<Transaction>(`${this.apiUrl}/${id}`);
   }
-  createTransaction(transaction: Transaction) :Observable<Transaction>{
-    return this.http.post<Transaction>(this.apiUrl, transaction);
+
+  createTransaction(transaction: any) :Observable<any>{
+    return this.http.post<any>(this.apiUrl, transaction);
   }
   updateTransaction(id: number, transaction: Transaction) :Observable<Transaction> {
     return this.http.put<Transaction>(`${this.apiUrl}/${id}`, transaction);

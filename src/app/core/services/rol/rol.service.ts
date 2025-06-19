@@ -7,7 +7,7 @@ import {Rol} from '../../../models/rol.model';
   providedIn: 'root'
 })
 export class RolService {
-  private apiUrl = 'http://localhost:8080/rol';
+  private apiUrl = 'http://localhost:8080/Rol';
   constructor(private http: HttpClient) { }
   getRol(): Observable<Rol[]> {
     return this.http.get<Rol[]>(`${this.apiUrl}`);

@@ -10,13 +10,17 @@ export class BeneficiaryService {
   private apiUrl = 'http://localhost:8080/beneficiary';
   constructor(private http: HttpClient) { }
 
-  getBeneficiary(): Observable<Beneficiary[]> {
+  getAll(): Observable<Beneficiary[]> {
     return this.http.get<Beneficiary[]>(`${this.apiUrl}`);
+  }
+  getByUserId(userId: number): Observable<Beneficiary[]> {
+    return this.http.get<Beneficiary[]>(`${this.apiUrl}/user/${userId}`);
   }
   getBeneficiaryById(id: number): Observable<Beneficiary> {
     return this.http.get<Beneficiary>(`${this.apiUrl}/${id}`);
   }
-  createBeneficiary(beneficiary: Beneficiary):Observable<Beneficiary> {
+
+  create(beneficiary: { userId: number | undefined; accountId: number }): Observable<Beneficiary> {
     return this.http.post<Beneficiary>(this.apiUrl, beneficiary);
   }
   updateBeneficiary(id: number, beneficiary :Beneficiary):Observable<Beneficiary> {
@@ -25,5 +29,6 @@ export class BeneficiaryService {
   deleteBeneficiary(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+
 
 }
