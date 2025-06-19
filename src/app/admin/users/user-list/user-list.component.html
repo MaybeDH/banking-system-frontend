@@ -1,50 +1,77 @@
-<p>user-list works!</p>
-<div class="container">
-  <header class="header">
-    <h1 class="title">Gestión de Usuarios</h1>
-    <p class="subtitle">Administra los usuarios del sistema</p>
-    <a href="/admin/users/new" class="button create-user">
-      <span class="icon">+</span> Crear Usuario
-    </a>
-  </header>
-
-  <section class="card">
-    <header class="card-header">
-      <h2 class="card-title">Usuarios</h2>
-      <p class="card-description">Lista de todos los usuarios registrados en el sistema</p>
-      <div class="search-container">
-        <input type="text" placeholder="Buscar por nombre o email..." class="search-input" />
+<div class="custom-container">
+  @if (users.length>0) {
+    <div class="space-y-6">
+      <!-- Encabezado -->
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <h1 class="h3 font-weight-bold text-primary">Gestión de Usuarios</h1>
+          <p class="text-muted">Administra los usuarios del sistema</p>
+        </div>
+        <button routerLink='new' class="btn btn-primary d-flex align-items-center">
+          <i class="bi bi-plus-circle mr-2"></i> Crear Usuario
+        </button>
       </div>
-    </header>
 
-    <div class="card-content">
-      <table class="user-table">
-        <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Email</th>
-          <th>Rol</th>
-          <th>Estado</th>
-          <th>Fecha de Creación</th>
-          <th class="actions">Acciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td>Juan Pérez</td>
-          <td>juanexample.com</td>
-          <td>Cliente</td>
-          <td>Activo</td>
-          <td>2025-06-14</td>
-          <td class="actions">
-            <button class="action-btn">Editar</button>
-            <button class="action-btn">Ver</button>
-            <button class="action-btn delete">Eliminar</button>
-          </td>
-        </tr>
-        <!-- Más filas de usuarios -->
-        </tbody>
-      </table>
+      <!-- Card -->
+      <div class="card mt-4">
+        <div class="card-header">
+          <h5 class="card-title">Usuarios</h5>
+          <p class="card-text">Lista de todos los usuarios registrados en el sistema</p>
+          <div class="position-relative mt-4">
+            <input
+              type="text"
+              class="form-control pl-5"
+              placeholder="Buscar por nombre o email..."
+            />
+            <!--          <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3"></i>-->
+          </div>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Email</th>
+              <th>Rol</th>
+              <th>Estado</th>
+              <th>Fecha de Creación</th>
+              <th class="text-end">Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Aquí se mostrarían los datos de los usuarios -->
+            <tr *ngFor="let user of users">
+              <td>{{user.profile?.name}} {{user.profile?.lastName}}</td>
+              <td>{{user.email}}</td>
+              <td><span class="badge bg-success badge-custom">{{user.rol?.name}}</span></td>
+              <td><span class="badge bg-warning badge-custom"> ctivo{{user.profile?.status}}</span></td>
+              <td>2022-05-01{{user.addDate}}</td>
+              <td class="text-end">
+                <div class="dropdown">
+                  <button class="btn btn-link p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-three-dots-vertical"></i>
+                  </button>
+                  <ul class="dropdown-menu custom-dropdown">
+                    <li><a [routerLink]="['edit-user', user.id]" class="dropdown-item" >Editar</a></li>
+<!--                    <li><a [routerLink]="['view']" class="dropdown-item" >Ver Perfil</a></li>-->
+                    <li><a (click)="deleteUser(user.id)"  class="dropdown-item text-danger" >Desactivar</a></li>
+                  </ul>
+
+
+                </div>
+              </td>
+            </tr>
+            <!-- Más filas de usuarios -->
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-  </section>
+
+  } @else {
+    <p>No hay usuarios disponibles.... :)</p>
+
+  }
+
 </div>
+

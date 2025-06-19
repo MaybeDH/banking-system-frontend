@@ -14,24 +14,36 @@
       <p class="text-muted mb-0">Ingresa los datos para crear una nueva cuenta bancaria</p>
     </div>
     <div class="card-body">
-      <form>
+      <form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
         <!-- Seleccionar Usuario -->
         <div class="mb-3">
           <label for="userSearch" class="form-label">Seleccionar Usuario</label>
           <div class="input-group">
             <span class="input-group-text"><i class="bi bi-search"></i></span>
-            <input type="text" id="userSearch" class="form-control" placeholder="Buscar usuario por nombre o email..." />
+            <input
+              type="text"
+              id="userSearch"
+              class="form-control"
+              formControlName="userSearch"
+              placeholder="Buscar usuario por nombre o email..."
+              (input)="filterUsers()"
+            />
           </div>
           <div class="mt-2 border rounded-3 max-height-150 overflow-auto">
-            <div class="p-2 cursor-pointer">
-              <div class="fw-semibold">Juan Pérez</div>
-              <div class="text-muted small">juan.perezexample.com</div>
+<!--            <div *ngFor="let user of filteredUsers" (click)="selectUser(user.id)" class="p-2 cursor-pointer">-->
+<!--              <div class="fw-semibold">{{ user.profile.name }}</div>-->
+<!--              <div class="text-muted small">{{ user.email }}</div>-->
+<!--            </div>-->
+
+            <div *ngFor="let user of filteredUsers"
+                 (click)="selectUser(user)"
+                 class="p-2 cursor-pointer"
+                 [class.bg-light]="selectedUserId === user.id">
+              <div class="fw-semibold">{{ user.profile?.name }}</div>
+              <div class="text-muted small">{{ user.email }}</div>
             </div>
-            <div class="p-2 cursor-pointer">
-              <div class="fw-semibold">Ana Gómez</div>
-              <div class="text-muted small">ana.gomezexample.com</div>
-            </div>
-            <!-- Agregar más usuarios según sea necesario -->
+
+
           </div>
         </div>
 
@@ -39,14 +51,14 @@
         <div class="row mb-3">
           <div class="col-md-6">
             <label for="accountType" class="form-label">Tipo de Cuenta</label>
-            <select id="accountType" class="form-select">
+            <select id="accountType" formControlName="accountType" class="form-select">
               <option value="ahorros">Cuenta de Ahorros</option>
               <option value="corriente">Cuenta Corriente</option>
             </select>
           </div>
           <div class="col-md-6">
             <label for="currency" class="form-label">Moneda</label>
-            <select id="currency" class="form-select">
+            <select id="currency" formControlName="currency" class="form-select">
               <option value="USD">Dólar Estadounidense (USD)</option>
               <option value="EUR">Euro (EUR)</option>
               <option value="GBP">Libra Esterlina (GBP)</option>
@@ -57,7 +69,15 @@
         <!-- Saldo Inicial -->
         <div class="mb-3">
           <label for="initialBalance" class="form-label">Saldo Inicial</label>
-          <input type="number" id="initialBalance" class="form-control" placeholder="0.00" min="0" step="0.01" />
+          <input
+            type="number"
+            id="initialBalance"
+            class="form-control"
+            placeholder="0.00"
+            min="0"
+            step="0.01"
+            formControlName="initialBalance"
+          />
         </div>
 
         <!-- Botones -->
