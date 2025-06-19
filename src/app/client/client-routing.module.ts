@@ -4,9 +4,9 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {AccountsComponent} from './accounts/accounts.component';
 import {TransferComponent} from './transfer/transfer.component';
 import {BeneficiariesComponent} from './beneficiaries/beneficiaries.component';
-import {ProfileComponent} from './profile/profile.component';
 import {NewBeneficiaryComponent} from './beneficiaries/new-beneficiary/new-beneficiary.component';
 import {AccountDetailComponent} from './accounts/account-detail/account-detail.component';
+import {ProfileComponent} from './profile/profile.component';
 
 const routes: Routes = [
 

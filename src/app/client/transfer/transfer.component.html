@@ -1,43 +1,59 @@
-<p>transfer works!</p>
+
+
+
 <div class="transfer-wrapper">
+
   <div>
     <h1 class="title">Transferir Dinero</h1>
     <p class="subtitle">Envía dinero a tus beneficiarios de forma segura</p>
   </div>
 
   <div class="card-container">
-    <form onsubmit="event.preventDefault(); alert('Transferencia procesada');">
-      <div class="card-header">
-        <h2 class="form-title">Nueva Transferencia</h2>
-        <p class="form-subtitle">Completa los datos para realizar la transferencia</p>
-      </div>
+
+
+    <div class="card-header">
+      <h2 class="form-title">Nueva Transferencia</h2>
+      <p class="form-subtitle">Completa los datos para realizar la transferencia</p>
+    </div>
+    <form onsubmit="event.preventDefault(); alert('Transferencia procesada');" (ngSubmit)="submit()" #transferForm="ngForm">
+
 
       <div class="form-section">
         <!-- Cuenta Origen -->
         <div class="form-group">
-          <label for="fromAccount">Cuenta Origen</label>
-          <select id="fromAccount" class="form-control">
+          <label for="source">Cuenta Origen</label>
+          <select class="form-control" id="source" name="source" [(ngModel)]="sourceAccountId" required>
             <option disabled selected>Selecciona una cuenta</option>
-            <option value="1">ES7620770024003102575766 - Cuenta Corriente (Saldo: $2500.00)</option>
-            <option value="2">ES9820385778983000760236 - Cuenta Ahorro (Saldo: $5200.75)</option>
+            <option *ngFor="let acc of accounts" [value]="acc.accountId">
+              {{ acc.accountNumber }} - Saldo: {{ acc.balance }} {{ acc.currency }}
+            </option>
           </select>
+
         </div>
 
         <!-- Beneficiario -->
         <div class="form-group">
-          <label for="toBeneficiary">Beneficiario</label>
-          <select id="toBeneficiary" class="form-control">
+          <label for="target">Beneficiario</label>
+          <select class="form-control text-red-600" id="target" name="target" [(ngModel)]="targetAccountId" required>
             <option disabled selected>Selecciona un beneficiario</option>
-            <option value="b1">Carlos López - ES4200491500051234567890 (BBVA)</option>
-            <option value="b2">Ana Torres - ES2100500001001234567891 (Santander)</option>
+            <option *ngFor="let b of beneficiaries" [value]="b.account.accountId" >
+              {{ b.account.accountNumber }} - {{ b.account.currency }}
+            </option>
           </select>
         </div>
 
         <!-- Monto -->
         <div class="form-group">
           <label for="amount">Monto a Transferir</label>
-          <input type="number" class="form-control" id="amount" placeholder="0.00" min="0.01" step="0.01" />
-          <small class="text-muted">Saldo disponible: $2500.00</small>
+
+          <input id="amount"
+                 type="number"
+                 name="amount"
+                 [(ngModel)]="amount"
+                 min="1"
+                 required  class="form-control"  placeholder="0.00"  step="0.01" />
+          <small id="source" name="source" [(ngModel)]="sourceAccountId" required>Saldo disponible: $2500.00</small>
+
         </div>
 
         <!-- Descripción -->
@@ -60,5 +76,10 @@
         </button>
       </div>
     </form>
+    <p *ngIf="successMessage" class="success">{{ successMessage }}</p>
+    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
   </div>
 </div>
+
+
+

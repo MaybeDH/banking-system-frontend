@@ -1,3 +1,35 @@
+<h2>Mis Beneficiarios</h2>
+
+<h2>Mis Beneficiarios</h2>
+
+<form (ngSubmit)="addBeneficiary()">
+  <label>Agregar cuenta:</label>
+  <input type="text" [(ngModel)]="accountIdToAdd" name="accountId" required />
+  <button type="submit">Agregar</button>
+</form>
+
+<table *ngIf="beneficiaries.length > 0">
+  <thead>
+  <tr>
+    <th># Cuenta</th>
+    <th>Moneda</th>
+    <th>Tipo</th>
+    <th>Acciones</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let b of beneficiaries">
+    <td>{{ b.account.accountNumber }}</td>
+    <td>{{ b.account.currency }}</td>
+    <td>{{ b.account.type }}</td>
+    <td><button (click)="deleteBeneficiary(b.beneficiaryId!)">Eliminar</button></td>
+  </tr>
+  </tbody>
+</table>
+
+<p *ngIf="beneficiaries.length === 0">No tienes beneficiarios registrados.</p>
+
+
 <div class="mb-5">
   <div class="d-flex justify-content-between align-items-center">
     <div>
@@ -41,11 +73,10 @@
       <tbody>
       <tr *ngFor="let b of filteredBeneficiaries()">
         <td>
-          <div class="fw-medium">{{ b.name }}</div>
-          <div class="text-muted small">{{ b.email }}</div>
+          <div class="fw-medium">{{ b.user.profile?.name }}</div>
+          <div class="text-muted small">{{ b.user.email }}</div>
         </td>
-        <td class="fw-medium">{{ b.accountNumber }}</td>
-        <td>{{ b.bank }}</td>
+        <td class="fw-medium">{{ b.account.accountNumber}}</td>
         <td>
           <span class="badge bg-success">Activo</span>
         </td>
@@ -57,12 +88,12 @@
             <ul class="dropdown-menu dropdown-menu-end">
               <li class="dropdown-header">Acciones</li>
               <li>
-                <a class="dropdown-item" [href]="'/client/transfer?beneficiary=' + b.id">
+                <a class="dropdown-item" [href]="'/client/transfer?beneficiary=' + b.beneficiaryId">
                   <i class="bi bi-person-check me-2"></i> Transferir
                 </a>
               </li>
               <li>
-                <button class="dropdown-item text-danger" (click)="deleteBeneficiary(b.id, b.name)">
+                <button class="dropdown-item text-danger" (click)="deleteBeneficiary(b.beneficiaryId!)">
                   <i class="bi bi-trash me-2"></i> Eliminar
                 </button>
               </li>
