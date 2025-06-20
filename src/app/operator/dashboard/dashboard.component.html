@@ -1,31 +1,30 @@
-
 <div class="dashboard">
   <!-- Encabezado -->
   <header class="header">
     <h1>Panel de Operador</h1>
-    <p>Bienvenido, {{ name }}. Aquí tienes tus herramientas de trabajo.</p>
+    <p>Bienvenido, {{ user?.profile?.name }}. Aquí tienes tus herramientas de trabajo.</p>
   </header>
 
   <!-- Estadísticas del Día -->
   <section class="stats">
     <div class="stat-card">
       <h3>Transferencias</h3>
-      <p class="stat-value">120</p>
+      <p class="stat-value">{{resumen.transferencias.cantidad}}</p>
       <p class="stat-description">Hoy</p>
     </div>
     <div class="stat-card">
       <h3>Depósitos</h3>
-      <p class="stat-value">80</p>
+      <p class="stat-value">{{resumen.depositos.cantidad}}</p>
       <p class="stat-description">Hoy</p>
     </div>
     <div class="stat-card">
       <h3>Retiros</h3>
-      <p class="stat-value">40</p>
+      <p class="stat-value">{{resumen.retiros.cantidad}}</p>
       <p class="stat-description">Hoy</p>
     </div>
     <div class="stat-card">
       <h3>Beneficiarios</h3>
-      <p class="stat-value">15</p>
+      <p class="stat-value">{{totalBeneficiarios}}</p>
       <p class="stat-description">Registrados</p>
     </div>
   </section>
@@ -40,30 +39,22 @@
         <th>Cuenta</th>
         <th>Monto</th>
         <th>Fecha</th>
-        <th>Estado</th>
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>Transferencia</td>
-        <td>1234-5678</td>
-        <td>$200.00</td>
-        <td>14/06/2025</td>
-        <td><span class="status success">Completada</span></td>
-      </tr>
-      <tr>
-        <td>Depósito</td>
-        <td>2345-6789</td>
-        <td>$500.00</td>
-        <td>14/06/2025</td>
-        <td><span class="status pending">Pendiente</span></td>
-      </tr>
-      <tr>
-        <td>Retiro</td>
-        <td>3456-7890</td>
-        <td>$150.00</td>
-        <td>14/06/2025</td>
-        <td><span class="status failed">Fallida</span></td>
+      <tr *ngFor="let transaction of transactionsSorted">
+        <td>{{transaction?.transactionType}}</td>
+        <td>
+          <ng-container [ngSwitch]="transaction.transactionType.toLowerCase()">
+            <span *ngSwitchCase="'transferencia'">{{transaction.sourceAccount?.accountNumber}} → {{transaction.targetAccount?.accountNumber}}</span>
+            <span *ngSwitchCase="'retiro'">- {{transaction.sourceAccount?.accountNumber}}</span>
+            <span *ngSwitchCase="'depósito'">- {{transaction.sourceAccount?.accountNumber}}</span>
+            <span *ngSwitchCase="'deposito'">- {{transaction.sourceAccount?.accountNumber}}</span>
+            <span *ngSwitchDefault>-</span>
+          </ng-container>
+        </td>
+        <td>{{transaction.sourceAccount?.currency}}{{transaction?.amount}}</td>
+        <td>{{ transaction?.date | date:'dd/MM/yyyy HH:mm' }}</td>
       </tr>
       </tbody>
     </table>

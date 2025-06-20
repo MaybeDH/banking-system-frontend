@@ -1,83 +1,92 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../../core/services/auth/auth.service';
-interface Stat {
-  title: string;
-  value: string;
-  description: string;
-  icon: string;
-  color: string;
-}
-
-interface QuickAction {
-  title: string;
-  description: string;
-  href: string;
-  icon: string;
-  color: string;
-}
-
-interface Operation {
-  id: string;
-  type: string;
-  account: string;
-  amount: string;
-  time: string;
-  status: string;
-}
+import {TransactionService} from '../../core/services/transaction/transaction.service';
+import {Transaction} from '../../models/transaction.model';
+import { User } from '../../models/user.model';
+import {Rol} from '../../models/rol.model';
+import {UserService} from '../../core/services/user/user.service';
+import {BeneficiaryService} from '../../core/services/beneficiary/beneficiary.service';
+import {Beneficiary} from '../../models/beneficiary.model';
+import {NgForOf, NgSwitch, NgSwitchCase, NgSwitchDefault, DatePipe, CommonModule} from '@angular/common';
 @Component({
   selector: 'app-dashboard',
   imports: [
+    NgForOf,
+    NgSwitch,
+    NgSwitchCase,
+    NgSwitchDefault,
+    DatePipe,
+    CommonModule
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements  OnInit {
-  user = { name: 'Operador', role: 'operator' }; // Reemplaza con AuthService
+  user: User | null=null;
+  transactions: Transaction[] = [];
+  beneficiaries: Beneficiary[] = [];
+  transferencias: Transaction[] = [];
+  depositos: Transaction[] = [];
+  retiros: Transaction[] = [];
+  resumen = {
+    transferencias: { cantidad: 0, total: 0 },
+    depositos: { cantidad: 0, total: 0 },
+    retiros: { cantidad: 0, total: 0 }
+  };
+  totalBeneficiarios: number = 0;
 
-  stats: Stat[] = [
-    { title: 'Transacciones Hoy', value: '127', description: 'Operaciones procesadas', icon: 'send', color: 'text-blue-600' },
-    { title: 'Cuentas Consultadas', value: '89', description: 'Búsquedas realizadas', icon: 'search', color: 'text-green-600' },
-    { title: 'Ajustes de Saldo', value: '12', description: 'Modificaciones aprobadas', icon: 'calculator', color: 'text-purple-600' },
-    { title: 'Clientes Atendidos', value: '45', description: 'Usuarios asistidos', icon: 'users', color: 'text-orange-600' },
-  ];
-
-  quickActions: QuickAction[] = [
-    { title: 'Buscar Cuenta', description: 'Consultar información de cuentas', href: '/operator/accounts', icon: 'search', color: 'bg-blue-500' },
-    { title: 'Nueva Transacción', description: 'Procesar depósito, retiro o transferencia', href: '/operator/transactions', icon: 'send', color: 'bg-green-500' },
-    { title: 'Ajustar Saldo', description: 'Modificar saldo de cuenta', href: '/operator/adjust', icon: 'calculator', color: 'bg-purple-500' },
-  ];
-
-  recentOperations: Operation[] = [
-    { id: '1', type: 'Depósito', account: '**** 1234', amount: '+$1,500.00', time: '10:30 AM', status: 'Completado' },
-    { id: '2', type: 'Retiro', account: '**** 5678', amount: '-$800.00', time: '10:15 AM', status: 'Completado' },
-    { id: '3', type: 'Transferencia', account: '**** 9012', amount: '-$2,300.00', time: '09:45 AM', status: 'Completado' },
-  ];
-
-  constructor(private router: Router,private auth: AuthService) {}
-
-
-  email: string | null = null;
-  role: string | null = null;
-  name: string | null = null;
-  // initials: string = ''; // Para las iniciales del avatar
-  //
-  //
-
+  constructor(private router: Router,
+              private auth: AuthService,
+              private transactionService: TransactionService,
+              private userService: UserService,
+              private beneficiaryService: BeneficiaryService,) {}
 
 
   ngOnInit(): void {
-    if (!this.user || this.user.role !== 'operator') {
-      this.router.navigate(['/']);
-    }
-    const userString = localStorage.getItem('user') || '';
-    if (!userString) {
-      return ;
-    }
-    const user = JSON.parse(userString);
-    this.email = user?.email || '';
-    this.role = user?.rol.name;
-    this.name = user?.profile.name;
 
+    const currentUser = this.auth.getCurrentUser();
+    const userId = currentUser?.id;
+
+
+    if (userId) {
+      this.userService.getUserById(userId).subscribe(data => {
+        this.user = data;
+        console.log('User', data);
+      })
+    }
+    this.transactionService.getTransaction().subscribe(data => {
+      this.transactions = data;
+      this.separarTransacciones();
+      this.calcularResumen();
+    })
+    this.beneficiaryService.getAll().subscribe(data => {
+      this.beneficiaries = data;
+      this.totalBeneficiarios = data.length;
+    })
+
+  }
+
+  separarTransacciones() {
+    this.transferencias = this.transactions.filter(t => t.transactionType.toLowerCase() === 'transferencia');
+    this.depositos = this.transactions.filter(t => t.transactionType.toLowerCase() === 'depósito' || t.transactionType.toLowerCase() === 'deposito');
+    this.retiros = this.transactions.filter(t => t.transactionType.toLowerCase() === 'retiro');
+  }
+
+  calcularResumen() {
+    this.resumen.transferencias.cantidad = this.transferencias.length;
+    this.resumen.transferencias.total = this.transferencias.reduce((sum, t) => sum + t.amount, 0);
+    this.resumen.depositos.cantidad = this.depositos.length;
+    this.resumen.depositos.total = this.depositos.reduce((sum, t) => sum + t.amount, 0);
+    this.resumen.retiros.cantidad = this.retiros.length;
+    this.resumen.retiros.total = this.retiros.reduce((sum, t) => sum + t.amount, 0);
+  }
+
+  get transactionsSorted() {
+    return [...this.transactions].sort((a, b) => {
+      const dateA = a.date ? new Date(a.date).getTime() : 0;
+      const dateB = b.date ? new Date(b.date).getTime() : 0;
+      return dateB - dateA;
+    });
   }
 }
