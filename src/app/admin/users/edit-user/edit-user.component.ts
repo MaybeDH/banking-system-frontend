@@ -34,6 +34,9 @@ export class EditUserComponent implements  OnInit {
       password: [''],
       name: [''],
       lastName: [''],
+      ci:[''],
+      mobile: [''],
+      address: [''],
       rolId: [null]
     });
 
@@ -51,6 +54,9 @@ export class EditUserComponent implements  OnInit {
           password: user.password,
           name: user.profile?.name || null,
           lastName: user.profile?.lastName || null,
+          ci: user.profile?.ci || null,
+          mobile: user.profile?.mobile || null,
+          address: user.profile?.address || null,
           rolId: user.rol?.rolId
         }
         this.userForm.patchValue(userData);
@@ -61,9 +67,12 @@ export class EditUserComponent implements  OnInit {
   }
   onSubmit(): void {
     const userData = this.userForm.value;
-
+    // Forzar rolId a number
     if (this.userId) {
       userData.id = this.userId;
+      userData.rolId = Number(userData.rolId);
+      console.log(this.userId);
+      console.log("esto es lo que manda", userData)
       this.userService.updateUser(this.userId,userData).subscribe(() => {
         this.router.navigate(['admin/users']);
       });

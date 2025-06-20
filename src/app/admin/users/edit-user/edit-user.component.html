@@ -22,17 +22,28 @@
       <input formControlName="lastName" class="form-control">
     </div>
     <div class="mb-3">
+      <label>Cédula de Identidad</label>
+      <input formControlName="ci" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label>Telefono Movil</label>
+      <input formControlName="mobile" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label>Dirección</label>
+      <input formControlName="addres" class="form-control">
+    </div>
+    <div class="mb-3">
       <label for="rolId">Rol</label>
       <select
-        id="rolId"
-        class="form-control"
-        [(ngModel)]="userForm.controls['rolId']"
-        name="rolId"
-        required
-      >
-        <option value="" disabled>Selecciona un rol</option>
-        <option *ngFor="let role of roles" [value]="role.rolId">{{ role.name }}</option>
-      </select>
+  id="rolId"
+  class="form-control"
+  formControlName="rolId"
+  required
+>
+  <option value="" disabled>Selecciona un rol</option>
+  <option *ngFor="let role of roles" [value]="role.rolId">{{ role.name }}</option>
+</select>
     </div>
 
     <div class="card-footer">

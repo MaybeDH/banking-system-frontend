@@ -28,6 +28,7 @@
             <th>Documento</th>
             <th>Teléfono</th>
             <th>Dirección</th>
+            <th>Eliminado</th>
             <th class="text-right">Acciones</th>
           </tr>
           </thead>
@@ -50,16 +51,17 @@
             </td>
             <td>{{profile.mobile}}</td>
             <td title="Calle Falsa 123, Madrid">{{profile.address}}</td>
+            <td title="Calle Falsa 123, Madrid">{{profile.deleted}}</td>
             <td class="text-center">
               <div class="dropdown">
                 <button class="btn btn-link p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <i class="bi bi-three-dots-vertical"></i>
                 </button>
                 <ul class="dropdown-menu custom-dropdown">
-                  <li><a [routerLink]="['edit', profile.profileId]" class="dropdown-item" >Editar</a></li>
+<!--                  <li><a [routerLink]="['edit', profile.profileId]" class="dropdown-item" >Editar</a></li>-->
 <!--                  <li><a [routerLink]="['edit-user', user.id]" class="dropdown-item" >Editar</a></li>-->
 
-                  <li><a class="dropdown-item text-danger" >Desactivar</a></li>
+                  <li><a (click)="deleteProfile(Number(profile.profileId))" class="dropdown-item text-danger" >Desactivar</a></li>
                 </ul>
               </div>
             </td>

@@ -24,5 +24,24 @@ export class ProfileListComponent implements OnInit {
       this.profiles = profiles;
     });
   }
+  deleteProfile(id:number) {
+    if (confirm('¿Estás seguro de que deseas eliminar este perfil?')) {  // Confirmación antes de eliminar
+      console.log(id);
+      this.profileService.deleteProfile(id).subscribe()
+    //   deleteProfile(id).subscribe(
+    //     () => {
+    //       // Actualizar la lista de usuarios después de eliminar
+    //       this.profiles = this.profiles.filter(profile => profile.profileId !== id);
+    //     },
+    //     (error) => {
+    //       console.error('Error al eliminar el usuario:', error);
+    //       alert('Hubo un error al intentar eliminar el usuario.');
+    //     }
+    //   );
+    // }
 
+
+  }}
+
+  protected readonly Number = Number;
 }

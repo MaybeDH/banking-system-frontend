@@ -2,13 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import { User } from '../../../models/user.model';
 import {UserService} from '../../../core/services/user/user.service';
 import {Router, RouterLink} from '@angular/router';
-import {NgForOf, NgIf} from '@angular/common';
+import {DatePipe, NgForOf, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-user-list',
   imports: [
     RouterLink,
-    NgForOf
+    NgForOf,
+    DatePipe
   ],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.css'
@@ -36,5 +37,6 @@ export class UserListComponent implements OnInit {
         }
       );
     }}
+
 
 }

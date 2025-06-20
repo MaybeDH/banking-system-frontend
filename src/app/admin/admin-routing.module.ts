@@ -17,11 +17,15 @@ const routes: Routes = [
   {path:'users', component: UserListComponent},
   { path: 'users/new', component: NewUserComponent },
   { path: 'users/edit-user/:id', component: EditUserComponent },
-  { path: 'users/perfil', component: ProfileComponent },
+  { path: 'users/view/:id', component: ProfileComponent },
+  { path: 'users/view/:id/edit/:id', component: EditUserComponent },
+
+  // { path: 'users/perfil', component: ProfileComponent },
   { path: 'accounts', component: AccountsComponent },
   { path: 'accounts/new', component: NewAccountComponent },
   { path: 'accounts/edit/:id', component: NewAccountComponent },
   { path: 'profiles' , component: ProfileListComponent},
+
   { path: 'profiles/edit/:profileId', component: EditProfileComponent },
   { path: 'perfil', component:PerfilComponent },
   {path: 'perfil/editPerfil', component: EditPerfilComponent },

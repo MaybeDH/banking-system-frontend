@@ -8,14 +8,14 @@
           Volver
         </a>
       </button>
-      <h1 class="h3 font-weight-bold text-primary">Perfil Completo de Usuario</h1>
+      <h1 class="h3 font-weight-bold text-primary">Perfil Completo de Usuario: {{user?.id}}</h1>
     </div>
-    <button class="btn btn-primary">
-      <a href="/admin/users/1/edit" class="d-flex align-items-center">
-        <i class="bi bi-pencil-fill mr-2 h-4 w-4"></i>
-        Editar Usuario
-      </a>
-    </button>
+<!--    <button class="btn btn-primary">-->
+<!--      <a  class="d-flex align-items-center text-white">-->
+<!--        <i class="bi bi-pencil-fill mr-2 h-4 w-4 text-white"></i>-->
+<!--        Editar-->
+<!--      </a>-->
+<!--    </button>-->
   </div>
 
   <div class="row g-6">
@@ -24,13 +24,15 @@
       <div class="card">
         <div class="card-header">
           <div class="d-flex align-items-center">
-            <img src="path_to_avatar.jpg" alt="Avatar" class="rounded-circle h-20 w-20">
+            <img src="https://images.vexels.com/media/users/3/145908/raw/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg" alt="Avatar" class="rounded-circle" width="40" height="40">
+
+<!--            <img src="path_to_avatar.jpg" alt="Avatar" class="rounded-circle h-20 w-20">-->
             <div class="ml-3">
-              <h5 class="card-title">Juan Pérez</h5>
-              <p class="card-text">juan.perezexample.com</p>
+              <h5 class="card-title">{{user?.profile?.name}} {{user?.profile?.lastName}}</h5>
+              <p class="card-text">{{user?.email}}</p>
               <div class="d-flex gap-2">
-                <span class="badge bg-primary">Admin</span>
-                <span class="badge bg-success">Activo</span>
+                <span class="badge bg-primary">{{user?.rol?.name}}</span>
+                <span class="badge bg-success">{{user?.profile?.status}}</span>
               </div>
             </div>
           </div>
@@ -40,22 +42,22 @@
           <h5 class="card-title">Información del Perfil</h5>
           <div class="row">
             <div class="col-md-6">
-              <p><strong>Profile ID:</strong> 12345</p>
+              <p><strong>Profile ID:</strong> {{user?.profile?.profileId}}</p>
             </div>
             <div class="col-md-6">
-              <p><strong>Nombre:</strong> Juan</p>
+              <p><strong>Nombre:</strong> {{user?.profile?.name}}</p>
             </div>
             <div class="col-md-6">
-              <p><strong>Apellido:</strong> Pérez</p>
+              <p><strong>Apellido:</strong> {{user?.profile?.lastName}}</p>
             </div>
             <div class="col-md-6">
-              <p><strong>CI / Documento:</strong> 12345678</p>
+              <p><strong>CI / Documento:</strong> {{user?.profile?.ci}}</p>
             </div>
             <div class="col-md-6">
-              <p><strong>Móvil:</strong> +123456789</p>
+              <p><strong>Móvil:</strong> +591 {{user?.profile?.mobile}}</p>
             </div>
             <div class="col-md-6">
-              <p><strong>Email:</strong> juan.perezexample.com</p>
+              <p><strong>Email:</strong> {{user?.email}}</p>
             </div>
           </div>
 
@@ -66,7 +68,7 @@
           <div class="d-flex align-items-start gap-3">
             <i class="bi bi-pin-map h-4 w-4"></i>
             <div>
-              <p><strong>Dirección:</strong> Calle Falsa 123, Ciudad, País</p>
+              <p><strong>Dirección:</strong> {{user?.profile?.address}}</p>
             </div>
           </div>
 
@@ -76,13 +78,13 @@
           <h5 class="card-title">Información Adicional</h5>
           <div class="row">
             <div class="col-md-6">
-              <p><strong>Fecha de Nacimiento:</strong> 01/01/1990</p>
+              <p><strong>Fecha de Nacimiento:</strong> 12/07/2002</p>
             </div>
             <div class="col-md-6">
-              <p><strong>Tipo de Documento:</strong> DNI</p>
+              <p><strong>Tipo de Documento:</strong> CI</p>
             </div>
             <div class="col-md-6">
-              <p><strong>Nacionalidad:</strong> Española</p>
+              <p><strong>Nacionalidad:</strong> Española :)</p>
             </div>
           </div>
         </div>
@@ -100,59 +102,83 @@
           <p class="card-text">Información de seguimiento y cambios</p>
         </div>
         <div class="card-body">
-          <p><strong>ID de Usuario:</strong> 12345</p>
+          <p><strong>ID de Usuario:</strong> {{user?.id}}</p>
           <hr>
-          <p><strong>Fecha de Creación:</strong> 01/01/2020</p>
-          <p><strong>Creado por:</strong> Admin</p>
+          <p><strong>Fecha de Creación:</strong> {{user?.addDate | date:'dd/MM/yyyy HH:mm'}}</p>
+          <p><strong>Creado por:</strong> {{user?.addUser}}</p>
           <hr>
-          <p><strong>Última Modificación:</strong> 01/01/2021</p>
-          <p><strong>Modificado por:</strong> Admin</p>
+          <p><strong>Última Modificación:</strong> {{user?.changeDate | date:'dd/MM/yyyy HH:mm'}}</p>
+          <p><strong>Modificado por:</strong> {{user?.changeUser}}</p>
           <hr>
-          <p><strong>Estado de Eliminación:</strong> Activo</p>
+          <p><strong>Estado de Eliminación:</strong> {{user?.deleted}}</p>
           <hr>
-          <p><strong>Cuentas Bancarias:</strong> 2 cuentas</p>
+          <p><strong>Password:</strong>
+            <span [ngClass]="{'text-monospace': true}">
+              <span *ngIf="!passwordVisible">••••••••</span>
+              <span *ngIf="passwordVisible">{{user?.password}}</span>
+              <button type="button" class="btn btn-sm btn-link" (click)="togglePasswordVisible()">
+                {{ passwordVisible ? 'Ocultar' : 'Mostrar' }}
+              </button>
+            </span>
+
+          </p>
+          <hr>
+
+          <div *ngIf="generatedPassword" class="alert alert-info mt-2">
+            Nueva contraseña generada: <strong>{{generatedPassword}}</strong>
+          </div>
+          <p><strong>Cuentas Bancarias:</strong> {{ cuentas.length }}  cuentas</p>
+          <ul class="list-unstyled ps-2">
+            <li *ngFor="let cuenta of cuentas">
+              <i class="bi bi-credit-card me-2 text-secondary"></i>{{ cuenta.accountNumber }} {{cuenta.status}}
+            </li>
+          </ul>
+
           <p><strong>Último Acceso:</strong> 01/06/2021</p>
           <p><strong>Miembro desde:</strong> 01/01/2020</p>
+
+
+
         </div>
       </div>
     </div>
   </div>
 
   <!-- Historial de Cambios -->
-  <div class="card">
-    <div class="card-header">
-      <h5 class="card-title d-flex align-items-center">
-        <i class="bi bi-clock h-5 w-5 mr-2"></i>
-        Historial de Cambios
-      </h5>
-      <p class="card-text">Registro de todas las modificaciones realizadas al perfil</p>
-    </div>
-    <div class="card-body">
-      <div class="d-flex align-items-start gap-4 p-4 bg-light rounded">
-        <div class="w-2 h-2 bg-primary rounded-circle mt-2"></div>
-        <div class="flex-1">
-          <div class="d-flex justify-content-between">
-            <p class="font-weight-bold">Última modificación del perfil</p>
-            <span class="text-muted">01/01/2021</span>
-          </div>
-          <p class="text-muted">Modificado por: Admin</p>
-          <p class="text-muted">Campos actualizados: Información de contacto</p>
-        </div>
-      </div>
+<!--  <div class="card">-->
+<!--    <div class="card-header">-->
+<!--      <h5 class="card-title d-flex align-items-center">-->
+<!--        <i class="bi bi-clock h-5 w-5 mr-2"></i>-->
+<!--        Historial de Cambios-->
+<!--      </h5>-->
+<!--      <p class="card-text">Registro de todas las modificaciones realizadas al perfil</p>-->
+<!--    </div>-->
+<!--    <div class="card-body">-->
+<!--      <div class="d-flex align-items-start gap-4 p-4 bg-light rounded">-->
+<!--        <div class="w-2 h-2 bg-primary rounded-circle mt-2"></div>-->
+<!--        <div class="flex-1">-->
+<!--          <div class="d-flex justify-content-between">-->
+<!--            <p class="font-weight-bold">Última modificación del perfil</p>-->
+<!--            <span class="text-muted">01/01/2021</span>-->
+<!--          </div>-->
+<!--          <p class="text-muted">Modificado por: Admin</p>-->
+<!--          <p class="text-muted">Campos actualizados: Información de contacto</p>-->
+<!--        </div>-->
+<!--      </div>-->
 
-      <div class="d-flex align-items-start gap-4 p-4 bg-light rounded">
-        <div class="w-2 h-2 bg-success rounded-circle mt-2"></div>
-        <div class="flex-1">
-          <div class="d-flex justify-content-between">
-            <p class="font-weight-bold">Perfil creado</p>
-            <span class="text-muted">01/01/2020</span>
-          </div>
-          <p class="text-muted">Creado por: Admin</p>
-          <p class="text-muted">Perfil inicial configurado con toda la información básica</p>
-        </div>
-      </div>
-    </div>
-  </div>
+<!--      <div class="d-flex align-items-start gap-4 p-4 bg-light rounded">-->
+<!--        <div class="w-2 h-2 bg-success rounded-circle mt-2"></div>-->
+<!--        <div class="flex-1">-->
+<!--          <div class="d-flex justify-content-between">-->
+<!--            <p class="font-weight-bold">Perfil creado</p>-->
+<!--            <span class="text-muted">01/01/2020</span>-->
+<!--          </div>-->
+<!--          <p class="text-muted">Creado por: Admin</p>-->
+<!--          <p class="text-muted">Perfil inicial configurado con toda la información básica</p>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
 
   <!-- Acciones Administrativas -->
   <div class="card">
@@ -163,16 +189,19 @@
     <div class="card-body">
       <div class="d-flex flex-wrap gap-2">
         <button class="btn btn-outline-primary">
-          <a href="/admin/users/1/edit">
+          <a [routerLink]="['edit', userId]">
             <i class="bi bi-pencil-fill mr-2"></i>
             Editar Usuario
           </a>
         </button>
-        <button class="btn btn-outline-secondary">Resetear Contraseña</button>
-        <button class="btn btn-outline-success">Ver Historial Completo</button>
-        <button class="btn btn-outline-info">Generar Reporte</button>
-        <button class="btn btn-outline-danger">Desactivar Usuario</button>
-        <button class="btn btn-danger">
+        <button class="btn btn-outline-secondary" (click)="resetPassword()" >Resetear Contraseña</button>
+        <button
+          [ngClass]="isInactive ? 'btn btn-outline-success' : 'btn btn-outline-danger'"
+          (click)="toggleUserStatus()">
+          {{ isInactive ? 'Activar Usuario' : 'Desactivar Usuario' }}
+        </button>
+
+        <button class="btn btn-danger" (click)="deleteUser()">
           <i class="bi bi-trash-fill mr-2"></i>
           Marcar como Eliminado
         </button>

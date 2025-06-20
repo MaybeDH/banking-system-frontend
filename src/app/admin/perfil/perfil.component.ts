@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {NgForOf} from "@angular/common";
+import {DatePipe, NgForOf} from "@angular/common";
 import {Profile} from '../../models/profile.model';
 import {User} from '../../models/user.model';
 import {AuthService} from '../../core/services/auth/auth.service';
@@ -10,15 +10,14 @@ import {RouterLink} from '@angular/router';
   selector: 'app-perfil',
   imports: [
     NgForOf,
-    RouterLink
+    RouterLink,
+    DatePipe
   ],
   templateUrl: './perfil.component.html',
   styleUrl: './perfil.component.css'
 })
 export class PerfilComponent implements OnInit {
-
   profile: Profile | null  = null;
-
   user: User | null = null;
 
   constructor(

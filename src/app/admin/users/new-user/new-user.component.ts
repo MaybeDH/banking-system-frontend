@@ -14,23 +14,34 @@ import {NgClass, NgForOf, NgIf} from '@angular/common';
     FormsModule,
     NgForOf,
     NgIf,
-    NgClass
   ],
   templateUrl: './new-user.component.html',
   styleUrl: './new-user.component.css'
 })
 export class NewUserComponent implements OnInit, OnDestroy {
 
-  user = {
+  user: {
+    email: string;
+    password: string;
+    name: string;
+    lastName: string;
+    ci: string;
+    mobile: string;
+    address: string;
+    status: string;
+    rolId: number | null;
+  } = {
     email: '',
     password: '',
-      name: '',
-      lastName: '',
-      ci: '',
-      mobile: '',
-      address: '',
+    name: '',
+    lastName: '',
+    ci: '',
+    mobile: '',
+    address: '',
+    status: 'ACTIVO',
     rolId: null,
   };
+
   roles: Rol[] = [];
   responseMessage:string='';
   showToast:boolean=false;
@@ -49,6 +60,9 @@ export class NewUserComponent implements OnInit, OnDestroy {
     );
   }
   saveUser(): void {
+    this.user.rolId=Number(this.user.rolId)
+
+    console.log(this.user);
     this.userService.saveUser(this.user).subscribe(
       (response)=>{
         this.showToast = true;

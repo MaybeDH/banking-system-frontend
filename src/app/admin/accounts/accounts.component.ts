@@ -18,6 +18,9 @@ import {NgForOf} from '@angular/common';
 export class AccountsComponent implements  OnInit {
   accounts: Account[]=[];
   users: User[]=[];
+  // userId: string | null=null;
+  // userMap: Map<number, User> = new Map(); // <userId, User>
+
 
   constructor(private accountService: AccountService,
   private userService: UserService) {
@@ -25,12 +28,24 @@ export class AccountsComponent implements  OnInit {
 
   ngOnInit() {
     this.loadAccounts();
-    this.userService.getUsers().subscribe(users => {this.users = users});
+    // this.userService.getUsers().subscribe(users => {this.users = users});
+
   }
   loadAccounts(): void {
-    this.accountService.getAccount().subscribe(data => {
-      this.accounts=data;
+    this.accountService.getAccount().subscribe(accounts => {
+      this.accounts=accounts;
+      accounts.forEach(account => {
+
+        this.userService.getUserById(Number(account.userId)).subscribe(user => {
+          this.users.push(user); // Agregamos el usuario al array
+        });
+      });
     });
+
+  }
+  getUserName(userId: number): string {
+    const user = this.users.find(u=>u.id===userId)
+    return user ? `${user.profile?.name} ${user.profile?.lastName}` : 'Cargando...';
   }
 
 
@@ -122,4 +137,5 @@ export class AccountsComponent implements  OnInit {
   //       return 'Desconocido'
   //   }
   // }
+  protected readonly Number = Number;
 }

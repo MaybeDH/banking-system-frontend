@@ -1,83 +1,96 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../../core/services/auth/auth.service';
+import { UserService } from '../../core/services/user/user.service';
+import { TransactionService } from '../../core/services/transaction/transaction.service';
+import { User } from '../../models/user.model';
+import { Transaction } from '../../models/transaction.model';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [
-  ],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  styleUrls: ['./dashboard.component.css'] // CORREGIDO
 })
 export class DashboardComponent implements OnInit {
-  user = {
-    name: 'Admin',
-    role: 'admin', // Simulación — reemplaza con AuthService
-  }
+  user: User | null = null;
+  transactions: Transaction[] = [];
+  resumen: TransactionSummary | null = null; // Para guardar el resumen
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private auth: AuthService,
+    private userService: UserService,
+    private transactionService: TransactionService
+  ) {}
 
   ngOnInit(): void {
-    if (!this.user || this.user.role !== 'admin') {
-      this.router.navigate(['/'])
+    const currentUser = this.auth.getCurrentUser();
+    const userId = currentUser?.id;
+    console.log(userId);
+
+    if (userId) {
+      this.userService.getUserById(userId).subscribe(data => {
+        this.user = data;
+        console.log('User', data);
+      });
+
+      this.transactionService.getTransaction().subscribe(data => {
+        this.transactions = data;
+        console.log('Transactions', this.transactions);
+
+        // ✅ Llamada correcta a resumen solo cuando los datos están listos
+        this.resumen = summarizeTransactions(this.transactions);
+        console.log('Resumen', this.resumen);
+      });
     }
   }
 
-  stats = [
-    {
-      title: 'Total Usuarios',
-      value: '1,234',
-      description: '+12% desde el mes pasado',
-      icon: 'users',
-      color: 'text-blue-600',
-    },
-    {
-      title: 'Cuentas Activas',
-      value: '2,456',
-      description: '+8% desde el mes pasado',
-      icon: 'credit-card',
-      color: 'text-green-600',
-    },
-    {
-      title: 'Nuevos Registros',
-      value: '89',
-      description: 'En los últimos 7 días',
-      icon: 'user-check',
-      color: 'text-purple-600',
-    },
-    {
-      title: 'Transacciones Hoy',
-      value: '567',
-      description: '+23% vs ayer',
-      icon: 'trending-up',
-      color: 'text-orange-600',
-    },
-  ]
+  stats = [/* tus stats */];
 
-  quickActions = [
-    {
-      title: 'Crear Usuario',
-      description: 'Agregar nuevo usuario al sistema',
-      href: '/admin/users/new',
-      icon: 'plus',
-    },
-    {
-      title: 'Ver Usuarios',
-      description: 'Gestionar usuarios existentes',
-      href: '/admin/users',
-      icon: 'eye',
-    },
-    {
-      title: 'Crear Cuenta',
-      description: 'Abrir nueva cuenta bancaria',
-      href: '/admin/accounts/new',
-      icon: 'plus',
-    },
-    {
-      title: 'Ver Cuentas',
-      description: 'Administrar cuentas existentes',
-      href: '/admin/accounts',
-      icon: 'eye',
-    },
-  ]
+  quickActions = [/* tus quickActions */];
+}
+interface Transactio {
+  transactionType: string;
+  amount: number;
+}
 
+interface TransactionSummary {
+  depositoCount: number;
+  depositoTotal: number;
+  retiroCount: number;
+  retiroTotal: number;
+  transferenciaCount: number;
+  transferenciaTotal: number;
+}
+
+function summarizeTransactions(transactions: Transaction[]): TransactionSummary {
+  const summary: TransactionSummary = {
+    depositoCount: 0,
+    depositoTotal: 0,
+    retiroCount: 0,
+    retiroTotal: 0,
+    transferenciaCount: 0,
+    transferenciaTotal: 0
+  };
+
+  for (const tx of transactions) {
+    const type = tx.transactionType.toLowerCase().trim();
+
+    switch (type) {
+      case 'depósito':
+        summary.depositoCount++;
+        summary.depositoTotal += tx.amount;
+        break;
+      case 'retiro':
+        summary.retiroCount++;
+        summary.retiroTotal += tx.amount;
+        break;
+      case 'transferencia':
+        summary.transferenciaCount++;
+        summary.transferenciaTotal += tx.amount;
+        break;
+    }
+  }
+
+  return summary;
 }

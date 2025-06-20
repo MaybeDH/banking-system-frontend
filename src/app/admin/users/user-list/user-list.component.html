@@ -31,35 +31,44 @@
             <thead>
             <tr>
               <th>Nombre</th>
+
               <th>Email</th>
               <th>Rol</th>
               <th>Estado</th>
               <th>Fecha de Creación</th>
+              <th>Fecha de Actializacion</th>
               <th class="text-end">Acciones</th>
             </tr>
             </thead>
             <tbody>
             <!-- Aquí se mostrarían los datos de los usuarios -->
             <tr *ngFor="let user of users">
-              <td>{{user.profile?.name}} {{user.profile?.lastName}}</td>
-              <td>{{user.email}}</td>
-              <td><span class="badge bg-success badge-custom">{{user.rol?.name}}</span></td>
-              <td><span class="badge bg-warning badge-custom"> ctivo{{user.profile?.status}}</span></td>
-              <td>2022-05-01{{user.addDate}}</td>
-              <td class="text-end">
-                <div class="dropdown">
-                  <button class="btn btn-link p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-three-dots-vertical"></i>
-                  </button>
-                  <ul class="dropdown-menu custom-dropdown">
-                    <li><a [routerLink]="['edit-user', user.id]" class="dropdown-item" >Editar</a></li>
-<!--                    <li><a [routerLink]="['view']" class="dropdown-item" >Ver Perfil</a></li>-->
-                    <li><a (click)="deleteUser(user.id)"  class="dropdown-item text-danger" >Desactivar</a></li>
-                  </ul>
+
+              @if (user.deleted==false){
+
+                <td>{{user.profile?.name}} {{user.profile?.lastName}}</td>
+                <td>{{user.email}}</td>
+                <td><span class="badge bg-success badge-custom">{{user.rol?.name}}</span></td>
+                <td><span class="badge bg-warning badge-custom">{{user.profile?.status}}</span></td>
+                <td>{{user.addDate | date:'dd/MM/yyyy HH:mm'}}</td>
+                <td>{{user.changeDate | date:'dd/MM/yyyy HH:mm'}}</td>
+                <td class="text-end">
+                  <div class="dropdown">
+                    <button class="btn btn-link p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="bi bi-three-dots-vertical"></i>
+                    </button>
+                    <ul class="dropdown-menu custom-dropdown">
+                      <li><a [routerLink]="['edit-user', user.id]" class="dropdown-item" >Editar</a></li>
+                      <li><a [routerLink]="['view', user.id]" class="dropdown-item" >Ver Detalles</a></li>
+                      <!--                    <li><a [routerLink]="['view']" class="dropdown-item" >Ver Perfil</a></li>-->
+                      <li><a (click)="deleteUser(user.id)"  class="dropdown-item text-danger" >Desactivar</a></li>
+                    </ul>
 
 
-                </div>
-              </td>
+                  </div>
+                </td>
+              }
+
             </tr>
             <!-- Más filas de usuarios -->
             </tbody>

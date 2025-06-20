@@ -37,7 +37,7 @@
             <!-- Fila 1 -->
             <tr *ngFor="let account of accounts">
               <td class="fw-semibold">{{ account.accountNumber }}</td>
-              <td>{{ account.user?.profile?.name}}{{ account.user?.profile?.lastName}}</td>
+              <td>{{getUserName(Number(account.userId))}}</td>
               <td><span class="badge bg-info text-dark">{{account.type}}</span></td>
               <td>{{account.currency}}</td>
               <td class="fw-semibold">{{account.balance}}</td>
@@ -69,72 +69,40 @@
             </tr>
 
             <!-- Fila 2 -->
-            <tr>
-              <td class="fw-semibold">0101-00067890</td>
-              <td>María López</td>
-              <td><span class="badge bg-warning text-dark">Corriente</span></td>
-              <td>EUR</td>
-              <td class="fw-semibold">€3,800.00</td>
-              <td><span class="badge bg-danger">Inactiva</span></td>
-              <td class="text-end">
-                <div class="dropdown">
-                  <button
-                    class="btn btn-sm btn-outline-secondary"
-                    type="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <i class="bi bi-three-dots-vertical"></i>
-                  </button>
-                  <ul class="dropdown-menu dropdown-menu-end">
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <i class="bi bi-eye me-2"></i> Ver Detalles
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item text-danger" href="#">
-                        <i class="bi bi-lock me-2"></i> Inactivar Cuenta
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </td>
-            </tr>
+<!--            <tr>-->
+<!--              <td class="fw-semibold">0101-00067890</td>-->
+<!--              <td>María López</td>-->
+<!--              <td><span class="badge bg-warning text-dark">Corriente</span></td>-->
+<!--              <td>EUR</td>-->
+<!--              <td class="fw-semibold">€3,800.00</td>-->
+<!--              <td><span class="badge bg-danger">Inactiva</span></td>-->
+<!--              <td class="text-end">-->
+<!--                <div class="dropdown">-->
+<!--                  <button-->
+<!--                    class="btn btn-sm btn-outline-secondary"-->
+<!--                    type="button"-->
+<!--                    data-bs-toggle="dropdown"-->
+<!--                    aria-expanded="false"-->
+<!--                  >-->
+<!--                    <i class="bi bi-three-dots-vertical"></i>-->
+<!--                  </button>-->
+<!--                  <ul class="dropdown-menu dropdown-menu-end">-->
+<!--                    <li>-->
+<!--                      <a class="dropdown-item" href="#">-->
+<!--                        <i class="bi bi-eye me-2"></i> Ver Detalles-->
+<!--                      </a>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                      <a class="dropdown-item text-danger" href="#">-->
+<!--                        <i class="bi bi-lock me-2"></i> Inactivar Cuenta-->
+<!--                      </a>-->
+<!--                    </li>-->
+<!--                  </ul>-->
+<!--                </div>-->
+<!--              </td>-->
+<!--            </tr>-->
 
             <!-- Fila 3 -->
-            <tr>
-              <td class="fw-semibold">0101-00099999</td>
-              <td>Pedro Gómez</td>
-              <td><span class="badge bg-secondary">Plazo Fijo</span></td>
-              <td>BOB</td>
-              <td class="fw-semibold">Bs. 15,000.00</td>
-              <td><span class="badge bg-success">Activa</span></td>
-              <td class="text-end">
-                <div class="dropdown">
-                  <button
-                    class="btn btn-sm btn-outline-secondary"
-                    type="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <i class="bi bi-three-dots-vertical"></i>
-                  </button>
-                  <ul class="dropdown-menu dropdown-menu-end">
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <i class="bi bi-eye me-2"></i> Ver Detalles
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item text-danger" href="#">
-                        <i class="bi bi-lock me-2"></i> Inactivar Cuenta
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </td>
-            </tr>
             <!-- Más filas si se desea -->
             </tbody>
           </table>
