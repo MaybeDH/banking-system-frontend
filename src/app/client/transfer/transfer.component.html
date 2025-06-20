@@ -2,20 +2,16 @@
 
 
 <div class="transfer-wrapper">
-
   <div>
     <h1 class="title">Transferir Dinero</h1>
     <p class="subtitle">Envía dinero a tus beneficiarios de forma segura</p>
   </div>
-
   <div class="card-container">
-
-
     <div class="card-header">
       <h2 class="form-title">Nueva Transferencia</h2>
       <p class="form-subtitle">Completa los datos para realizar la transferencia</p>
     </div>
-    <form onsubmit="event.preventDefault(); alert('Transferencia procesada');" (ngSubmit)="submit()" #transferForm="ngForm">
+    <form (ngSubmit)="submit()" #transferForm="ngForm">
 
 
       <div class="form-section">
@@ -37,7 +33,8 @@
           <select class="form-control text-red-600" id="target" name="target" [(ngModel)]="targetAccountId" required>
             <option disabled selected>Selecciona un beneficiario</option>
             <option *ngFor="let b of beneficiaries" [value]="b.account.accountId" >
-              {{ b.account.accountNumber }} - {{ b.account.currency }}
+<!--              @if (b.deleted==false){-->
+                {{ b.account.accountNumber }} - {{ b.account.currency }}
             </option>
           </select>
         </div>
@@ -61,12 +58,6 @@
           <label for="description">Descripción (Opcional)</label>
           <textarea class="form-control" id="description" rows="3" placeholder="Concepto de la transferencia..."></textarea>
         </div>
-
-        <!-- Alerta simulada -->
-        <div class="alert alert-error">
-          <span class="icon">⚠️</span>
-          El monto excede el saldo disponible en la cuenta seleccionada.
-        </div>
       </div>
 
       <div class="form-actions">
@@ -76,9 +67,50 @@
         </button>
       </div>
     </form>
-    <p *ngIf="successMessage" class="success">{{ successMessage }}</p>
-    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+
   </div>
+
+
+  <div class="transaction-history-section">
+    <h2>Historial de Transacciones</h2>
+    <div class="form-group">
+      <label for="accountSelect">Selecciona una cuenta</label>
+      <select *ngIf="accounts?.length" class="form-control" [(ngModel)]="selectedAccountForHistory" (ngModelChange)="loadTransactionHistory($event)">
+        <option [value]="null" disabled selected>Selecciona una cuenta</option>
+        <option *ngFor="let acc of accounts" [value]="acc.accountId">
+          {{ acc.accountNumber }} - Saldo: {{ acc.balance }} {{ acc.currency }}
+        </option>
+
+      </select>
+
+    </div>
+
+    <div >
+      <h3>Transacciones recientes</h3>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Tipo</th>
+          <th>Monto</th>
+          <th>Cuenta destino</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let tx of transactions">
+          <td>{{ tx.date | date:'dd/MM/yyyy HH:mm'}}</td>
+          <td>{{ tx.transactionType }}</td>
+          <td>{{ tx.amount }}</td>
+          <td>{{ tx.targetAccount?.accountNumber}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+<!--    <p *ngIf="transactions?.length === 0">No hay transacciones para esta cuenta.</p>-->
+  </div>
+
+
 </div>
 
 

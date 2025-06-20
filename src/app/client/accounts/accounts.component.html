@@ -39,7 +39,6 @@
               <th>Moneda</th>
               <th>Saldo</th>
               <th>Estado</th>
-              <th>Acciones</th>
             </tr>
             </thead>
             <tbody>
@@ -47,15 +46,9 @@
               <td class="fw-medium">{{account.accountNumber}}</td>
               <td><span class="badge bg-info text-dark">{{ account.type }}</span></td>
               <td>{{ account.currency }}</td>
-              <td class="fw-medium">${{account.balance}}</td>
+              <td class="fw-medium">{{ account.currency }}{{account.balance}}</td>
               <td><span class="badge bg-success">{{ account.status }}</span></td>
-              <td>
-                <button
-                  [routerLink]="['accountDetail',account.accountId]"
-                  class="btn btn-outline-secondary btn-sm d-flex align-items-center">
-                  <i class="bi bi-eye me-1"></i> Detalles
-                </button>
-              </td>
+
             </tr>
             </tbody>
           </table>

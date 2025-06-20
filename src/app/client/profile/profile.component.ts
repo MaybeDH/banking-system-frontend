@@ -1,14 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {Profile} from '../../models/profile.model';
 import {AuthService} from '../../core/services/auth/auth.service';
-import {NgForOf} from '@angular/common';
+import {DatePipe, NgForOf} from '@angular/common';
 import {User} from '../../models/user.model';
 import {UserService} from '../../core/services/user/user.service';
 
 @Component({
   selector: 'app-profile',
   imports: [
-    NgForOf
+    NgForOf,
+    DatePipe
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
