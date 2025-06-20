@@ -6,7 +6,6 @@ import {Rol} from '../../models/rol.model';
 @Component({
   selector: 'app-navbar',
   imports: [
-    RouterLink
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'

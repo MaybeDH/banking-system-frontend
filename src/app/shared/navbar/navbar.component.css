@@ -22,7 +22,22 @@ header .container {
 header button.md-hidden {
   display: block;
 }
-
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.avatar button {
+  border: none;
+  background: none;
+  font-size: 30px;
+  color: #333;
+}
 /* Logo circular con degradado */
 .bank-gradient {
   background: linear-gradient(to right, #3b82f6, #14b8a6); /* de azul 500 a teal 500 */
@@ -73,19 +88,19 @@ header h1 {
 }
 
 /* Avatar redondo */
-.avatar {
-  height: 2.5rem; /* 40px */
-  width: 2.5rem;
-  border-radius: 9999px;
-  overflow: hidden;
-  background-color: #2563eb;
-  color: white;
-  font-size: 0.75rem;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+/*.avatar {*/
+/*  height: 2.5rem; !* 40px *!*/
+/*  width: 2.5rem;*/
+/*  border-radius: 9999px;*/
+/*  overflow: hidden;*/
+/*  background-color: #2563eb;*/
+/*  color: white;*/
+/*  font-size: 0.75rem;*/
+/*  font-weight: bold;*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*}*/
 
 /* Dropdown del avatar */
 .dropdown-menu {
