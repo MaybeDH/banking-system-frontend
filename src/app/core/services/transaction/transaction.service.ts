@@ -9,11 +9,14 @@ import {Observable} from 'rxjs';
 export class TransactionService {
   private apiUrl = 'http://localhost:8080/transaction';
   constructor(private http: HttpClient) { }
-  getTransaction(transaction: Transaction): Observable<Transaction[]> {
+  getTransaction(): Observable<Transaction[]> {
     return this.http.get<Transaction[]>(`${this.apiUrl}`);
   }
   getTransactionById(id: number): Observable<Transaction> {
     return this.http.get<Transaction>(`${this.apiUrl}/${id}`);
+  }
+  getTransactionsByAccountId(accountId: number): Observable<Transaction[]> {
+    return this.http.get<Transaction[]>(`${this.apiUrl}/account/${accountId}`);
   }
 
   createTransaction(transaction: any) :Observable<any>{

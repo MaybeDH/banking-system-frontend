@@ -12,5 +12,6 @@ export interface Account {
   changeDate?: Date;
   changeUser?: string;
   deleted?: boolean;
+  userId?: number;
   user?: User;
 }
