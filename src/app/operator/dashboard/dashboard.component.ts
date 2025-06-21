@@ -4,7 +4,6 @@ import {AuthService} from '../../core/services/auth/auth.service';
 import {TransactionService} from '../../core/services/transaction/transaction.service';
 import {Transaction} from '../../models/transaction.model';
 import { User } from '../../models/user.model';
-import {Rol} from '../../models/rol.model';
 import {UserService} from '../../core/services/user/user.service';
 import {BeneficiaryService} from '../../core/services/beneficiary/beneficiary.service';
 import {Beneficiary} from '../../models/beneficiary.model';

@@ -179,7 +179,7 @@
           <td class="fw-semibold text-primary">{{transaction?.transactionType}}</td>
           <td>
             <ng-container [ngSwitch]="transaction.transactionType.toLowerCase()">
-              <span *ngSwitchCase="'transferencia'" class="text-info">{{transaction.sourceAccount.accountNumber}} → {{transaction.targetAccount?.accountNumber}}</span>
+              <span *ngSwitchCase="'transferencia'" class="text-info">{{transaction.sourceAccount?.accountNumber}} → {{transaction.targetAccount?.accountNumber}}</span>
               <span *ngSwitchCase="'retiro'" class="text-danger">- {{transaction.sourceAccount.accountNumber}}</span>
               <span *ngSwitchCase="'depósito'" class="text-success">- {{transaction.sourceAccount.accountNumber}}</span>
               <span *ngSwitchCase="'deposito'" class="text-success">- {{transaction.sourceAccount.accountNumber}}</span>
