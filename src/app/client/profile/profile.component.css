@@ -1,0 +1,18 @@
+/* Avatar grande */
+.perfil-avatar {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border: 2px solid #dee2e6;
+}
+
+/* Espaciado entre secciones */
+.card:not(:last-child) {
+  margin-bottom: 1.5rem;
+}
+
+/* Iconos centrados */
+.bi {
+  font-size: 1rem;
+  min-width: 20px;
+}

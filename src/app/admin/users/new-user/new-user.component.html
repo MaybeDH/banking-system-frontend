@@ -1,0 +1,156 @@
+<div class="container mt-5">
+  <div class="header">
+    <a href="/admin/users" class="btn btn-ghost">
+      <span class="icon">←</span> Volver
+    </a>
+    <h1 class="title">Crear Nuevo Usuario</h1>
+  </div>
+
+  <div class="card form-card">
+      <form (ngSubmit)="saveUser()">
+
+      <div class="card-header">
+        <h2 class="card-title">Información del Usuario</h2>
+        <p class="card-description">
+        Ingresa los datos para crear un nuevo usuario en el sistema
+        </p>
+      </div>
+
+      <div class="card-content">
+        <div class="form-group">
+          <label for="name">Nombre</label>
+          <input
+          type="text" id="name"
+          placeholder="Ej. Juan"
+          [(ngModel)]="user.name"
+          name="name"
+          required
+          />
+        </div>
+        <div class="form-group">
+          <label for="lastName">Apellido</label>
+          <input
+          type="text"
+          id="lastName"
+          placeholder="Ej: Perez"
+          class="form-control"
+          [(ngModel)]="user.lastName"
+          name="lastName"
+          required
+          />
+        </div>
+
+        <!-- Correo Electrónico -->
+        <div class="form-group">
+          <label for="email">Correo Electrónico</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="usuario@ejemplo.com"
+            class="form-control"
+            [(ngModel)]="user.email"
+            name="email"
+            required
+          />
+        </div>
+
+        <!-- Contraseña -->
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input
+            type="password"
+            id="password"
+            class="form-control"
+            [(ngModel)]="user.password"
+            name="password"
+            required
+          />
+        </div>
+
+        <!-- Cédula de Identidad (CI) -->
+        <div class="form-group">
+          <label for="ci">Cédula de Identidad</label>
+          <input
+            type="text"
+            id="ci"
+            placeholder="Ej: 123456 (CI)"
+            class="form-control"
+            [(ngModel)]="user.ci"
+            name="ci"
+            required
+          />
+        </div>
+
+        <!-- Teléfono Móvil -->
+        <div class="form-group">
+          <label for="mobile">Teléfono Móvil</label>
+          <input
+            type="text"
+            id="mobile"
+            class="form-control"
+            [(ngModel)]="user.mobile"
+            name="mobile"
+            required
+          />
+        </div>
+
+        <!-- Dirección -->
+        <div class="form-group">
+          <label for="address">Dirección</label>
+          <input
+            type="text"
+            id="address"
+            class="form-control"
+            [(ngModel)]="user.address"
+            name="address"
+            required
+          />
+        </div>
+
+        <!-- Lista desplegable de Roles -->
+        <div class="form-group">
+          <label for="role">Rol</label>
+          <select
+            id="role"
+            class="form-control"
+            [(ngModel)]="user.rolId"
+            name="rolId"
+            required
+          >
+            <option value="" disabled>Selecciona un rol</option>
+            <option *ngFor="let role of roles" [value]="role.rolId">{{ role.name }}</option>
+          </select>
+        </div>
+
+
+
+
+      </div>
+
+
+
+
+
+
+      <div class="card-footer">
+        <a href="/admin/users" class="btn btn-outline">Cancelar</a>
+        <button type="submit" class="btn btn-primary">
+          💾 Guardar Usuario
+        </button>
+      </div>
+
+    </form>
+
+    <div *ngIf="showToast" class="toast align-items-center text-bg-success position-fixed bottom-0 end-0 m-3" role="alert" aria-live="assertive" aria-atomic="true" style="min-width: 300px;">
+      <div class="d-flex">
+        <div class="toast-body">
+          {{ responseMessage }}
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>

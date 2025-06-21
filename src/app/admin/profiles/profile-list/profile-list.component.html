@@ -1,0 +1,78 @@
+@if (profiles.length>0){
+
+  <div  class="container mt-5">
+    <div class="header">
+      <h1 class="title">Gestión de Perfiles</h1>
+      <p class="subtitle">Administra los perfiles de usuarios del sistema</p>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">Perfiles</h2>
+        <p class="card-description">Lista de todos los perfiles registrados en el sistema</p>
+        <div class="search-wrapper">
+          🔍
+          <input
+            type="text"
+            class="search-input"
+            placeholder="Buscar por nombre, email o documento..."
+          />
+        </div>
+      </div>
+
+      <div class="card-content">
+        <table class="profile-table">
+          <thead>
+          <tr>
+            <th>Usuario</th>
+            <th>Documento</th>
+            <th>Teléfono</th>
+            <th>Dirección</th>
+            <th>Eliminado</th>
+            <th class="text-right">Acciones</th>
+          </tr>
+          </thead>
+          <tbody>
+          <!-- Fila 1 -->
+          <tr *ngFor="let profile of profiles">
+            <td>
+              <div class="user-info">
+                <div class="avatar">JP</div>
+                <div>
+                  <div class="name">{{ profile.name }} {{profile.lastName}}</div>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="doc-info">
+                <span class="doc-id">{{profile.ci}}</span>
+                <span class="doc-type">CI</span>
+              </div>
+            </td>
+            <td>{{profile.mobile}}</td>
+            <td title="Calle Falsa 123, Madrid">{{profile.address}}</td>
+            <td title="Calle Falsa 123, Madrid">{{profile.deleted}}</td>
+            <td class="text-center">
+              <div class="dropdown">
+                <button class="btn btn-link p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="bi bi-three-dots-vertical"></i>
+                </button>
+                <ul class="dropdown-menu custom-dropdown">
+<!--                  <li><a [routerLink]="['edit', profile.profileId]" class="dropdown-item" >Editar</a></li>-->
+<!--                  <li><a [routerLink]="['edit-user', user.id]" class="dropdown-item" >Editar</a></li>-->
+
+                  <li><a (click)="deleteProfile(Number(profile.profileId))" class="dropdown-item text-danger" >Desactivar</a></li>
+                </ul>
+              </div>
+            </td>
+
+          </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+}
+

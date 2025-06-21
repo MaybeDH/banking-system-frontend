@@ -1,0 +1,86 @@
+<div class="custom-container">
+  @if (users.length>0) {
+    <div class="space-y-6">
+      <!-- Encabezado -->
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <h1 class="h3 font-weight-bold text-primary">Gestión de Usuarios</h1>
+          <p class="text-muted">Administra los usuarios del sistema</p>
+        </div>
+        <button routerLink='new' class="btn btn-primary d-flex align-items-center">
+          <i class="bi bi-plus-circle mr-2"></i> Crear Usuario
+        </button>
+      </div>
+
+      <!-- Card -->
+      <div class="card mt-4">
+        <div class="card-header">
+          <h5 class="card-title">Usuarios</h5>
+          <p class="card-text">Lista de todos los usuarios registrados en el sistema</p>
+          <div class="position-relative mt-4">
+            <input
+              type="text"
+              class="form-control pl-5"
+              placeholder="Buscar por nombre o email..."
+            />
+            <!--          <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3"></i>-->
+          </div>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>Nombre</th>
+
+              <th>Email</th>
+              <th>Rol</th>
+              <th>Estado</th>
+              <th>Fecha de Creación</th>
+              <th>Fecha de Actializacion</th>
+              <th class="text-end">Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Aquí se mostrarían los datos de los usuarios -->
+            <tr *ngFor="let user of users">
+
+              @if (user.deleted==false){
+
+                <td>{{user.profile?.name}} {{user.profile?.lastName}}</td>
+                <td>{{user.email}}</td>
+                <td><span class="badge bg-success badge-custom">{{user.rol?.name}}</span></td>
+                <td><span class="badge bg-warning badge-custom">{{user.profile?.status}}</span></td>
+                <td>{{user.addDate | date:'dd/MM/yyyy HH:mm'}}</td>
+                <td>{{user.changeDate | date:'dd/MM/yyyy HH:mm'}}</td>
+                <td class="text-end">
+                  <div class="dropdown">
+                    <button class="btn btn-link p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="bi bi-three-dots-vertical"></i>
+                    </button>
+                    <ul class="dropdown-menu custom-dropdown">
+                      <li><a [routerLink]="['edit-user', user.id]" class="dropdown-item" >Editar</a></li>
+                      <li><a [routerLink]="['view', user.id]" class="dropdown-item" >Ver Detalles</a></li>
+                      <!--                    <li><a [routerLink]="['view']" class="dropdown-item" >Ver Perfil</a></li>-->
+                      <li><a (click)="deleteUser(user.id)"  class="dropdown-item text-danger" >Desactivar</a></li>
+                    </ul>
+
+
+                  </div>
+                </td>
+              }
+
+            </tr>
+            <!-- Más filas de usuarios -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  } @else {
+    <p>No hay usuarios disponibles.... :)</p>
+
+  }
+
+</div>
+

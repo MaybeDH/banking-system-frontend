@@ -1,0 +1,39 @@
+<p>new-beneficiary works!</p>
+<div class="beneficiary-wrapper">
+  <div class="header">
+    <a routerLink="/client/beneficiaries" class="btn-ghost">
+      ← Volver
+    </a>
+    <h1 class="title">Agregar Beneficiario</h1>
+  </div>
+
+  <div class="card">
+    <form [formGroup]="beneficiaryForm" (ngSubmit)="onSubmit()">
+      <div class="card-header">
+        <h2 class="card-title">Información del Beneficiario</h2>
+        <p class="card-subtitle">Ingresa el número de cuenta del beneficiario</p>
+      </div>
+
+      <div class="form-body">
+        <!-- Cuenta -->
+        <div class="form-group">
+          <label for="alias">Alias del Beneficiario</label>
+          <input type="text" id="alias" formControlName="alias" placeholder="Maria Carmen" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="accountNumber">Número de Cuenta</label>
+          <input type="text" id="accountNumber" formControlName="accountNumber" placeholder="1234-5678-9012-3456" class="form-control" />
+        </div>
+        <div *ngIf="error" class="alert alert-error">{{ error }}</div>
+        <div *ngIf="success" class="alert alert-success">{{ success }}</div>
+      </div>
+
+      <div class="form-actions">
+        <a routerLink="/client/beneficiaries" class="btn btn-outline">Cancelar</a>
+        <button type="submit" class="btn btn-primary" [disabled]="beneficiaryForm.invalid">
+          💾 Agregar Beneficiario
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

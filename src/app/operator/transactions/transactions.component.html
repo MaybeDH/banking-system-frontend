@@ -1,0 +1,205 @@
+<div class="container my-5">
+  <h1 class="text-primary fw-bold">Transacciones Manuales</h1>
+  <p class="text-muted">Procesa depósitos, retiros y transferencias</p>
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#deposit" type="button" role="tab">
+        ➕ Depósito
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#withdrawal" type="button" role="tab">
+        ➖ Retiro
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#transfer" type="button" role="tab">
+        📤 Transferencia
+      </button>
+    </li>
+  </ul>
+
+  <div class="tab-content" id="transactionTabsContent">
+    <!-- Depósito -->
+    <div class="tab-pane fade show active" id="deposit" role="tabpanel">
+      <div class="card">
+        <div class="card-header fw-bold text-success">➕ Realizar Depósito</div>
+        <div class="card-body">
+          <p class="card-text">Agregar fondos a una cuenta bancaria</p>
+
+          <form [formGroup]="depositForm" (ngSubmit)="submitDeposit()">
+            <div class="mb-3">
+              <label for="deposit-account" class="form-label">Número de Cuenta</label>
+<!--              <input type="text" class="form-control" id="deposit-account" placeholder="1234-5678-9012-3456">-->
+              <select class="form-select" id="deposit-account" formControlName="accountId">
+                <option *ngFor="let acc of accounts" [value]="acc.accountId">
+                  {{ acc.accountNumber }} - {{ acc.type }} - {{ acc.balance }}{{acc.currency}}
+                </option>
+              </select>
+
+            </div>
+            <div class="mb-3">
+              <label for="deposit-amount" class="form-label">Monto a Depositar</label>
+              <input type="number" class="form-control" id="deposit-amount" min="0.01" placeholder="0.00" formControlName="amount">
+            </div>
+            <div class="mb-3">
+              <label for="deposit-description" class="form-label">Descripción</label>
+              <textarea class="form-control" id="deposit-description" rows="3" placeholder="Motivo del depósito..."></textarea>
+            </div>
+
+            <div class="alert alert-warning d-flex align-items-center" role="alert">
+              ⚠️ Verifica que el número de cuenta sea correcto antes de procesar el depósito.
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">➕ Procesar Depósito</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Retiro -->
+    <div class="tab-pane fade" id="withdrawal" role="tabpanel">
+      <div class="card">
+        <div class="card-header fw-bold text-danger">➖ Realizar Retiro</div>
+        <div class="card-body">
+          <p class="card-text">Retirar fondos de una cuenta bancaria</p>
+
+          <form [formGroup]="withdrawalForm" (ngSubmit)="submitWithdrawal()">
+            <div class="mb-3">
+              <label for="withdrawal-account" class="form-label">Número de Cuenta</label>
+<!--              <input type="text" class="form-control" id="withdrawal-account" placeholder="1234-5678-9012-3456">-->
+              <select class="form-select" id="deposit-account" formControlName="accountId">
+
+                <option *ngFor="let acc of accounts" [value]="acc.accountId">
+                  {{ acc.accountNumber }} - {{ acc.type }} - {{ acc.balance }}{{acc.currency}}
+                </option>
+              </select>
+            </div>
+
+
+            <div class="mb-3">
+              <label for="withdrawal-amount" class="form-label">Monto a Retirar</label>
+              <input type="number" class="form-control" id="withdrawal-amount" min="0.01" step="0.01" placeholder="0.00" formControlName="amount">
+            </div>
+            <div class="mb-3">
+              <label for="withdrawal-description" class="form-label">Descripción</label>
+              <textarea class="form-control" id="withdrawal-description" rows="3" placeholder="Motivo del retiro..."></textarea>
+            </div>
+
+            <div class="alert alert-warning d-flex align-items-center" role="alert">
+              ⚠️ Asegúrate de que la cuenta tenga fondos suficientes antes de procesar el retiro.
+            </div>
+
+            <button type="submit" class="btn btn-danger w-100">➖ Procesar Retiro</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Transferencia -->
+    <div class="tab-pane fade" id="transfer" role="tabpanel">
+      <div class="card">
+        <div class="card-header fw-bold text-primary">📤 Realizar Transferencia</div>
+        <div class="card-body">
+          <p class="card-text">Transferir fondos entre cuentas bancarias</p>
+
+          <form [formGroup]="transferForm" (ngSubmit)="submitTransfer()">
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="transfer-from" class="form-label">Cuenta Origen</label>
+<!--                <input type="text" class="form-control" id="transfer-from" placeholder="1234-5678-9012-3456">-->
+                <select class="form-select" id="deposit-account" formControlName="sourceAccountId">
+
+                  <option *ngFor="let acc of accounts" [value]="acc.accountId">
+                    {{ acc.accountNumber }} - {{ acc.type }} - {{ acc.balance }}{{acc.currency}}
+                  </option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label for="transfer-to" class="form-label">Cuenta Destino</label>
+<!--                <input type="text" class="form-control" id="transfer-to" placeholder="9876-5432-1098-7654">-->
+                <select class="form-select" id="deposit-account" formControlName="targetAccountId">
+
+                  <option *ngFor="let acc of accounts" [value]="acc.accountId">
+                    {{ acc.accountNumber }} - {{ acc.type }} - {{ acc.balance }}{{acc.currency}}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="transfer-amount" class="form-label">Monto a Transferir</label>
+              <input type="number" class="form-control" id="transfer-amount" min="0.01" step="0.01" placeholder="0.00" formControlName="amount">
+            </div>
+            <div class="mb-3">
+              <label for="transfer-description" class="form-label">Descripción</label>
+              <textarea class="form-control" id="transfer-description" rows="3" placeholder="Motivo de la transferencia..."></textarea>
+            </div>
+
+            <div class="alert alert-warning d-flex align-items-center" role="alert">
+              ⚠️ Verifica que ambas cuentas existan y que la cuenta origen tenga fondos suficientes.
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">📤 Procesar Transferencia</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="recent-operations mt-5">
+    <h2 class="fw-bold text-primary">Operaciones Recientes</h2>
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label for="filter-date" class="form-label">Filtrar por fecha</label>
+        <input id="filter-date" type="date" class="form-control border-primary" [(ngModel)]="filterDate" name="filterDate" (change)="filterWeek=''">
+      </div>
+      <div class="col-md-4">
+        <label for="filter-week" class="form-label">Filtrar por semana</label>
+        <input id="filter-week" type="week" class="form-control border-primary" [(ngModel)]="filterWeek" name="filterWeek" (change)="filterDate=''">
+      </div>
+      <div class="col-md-4 d-flex align-items-end">
+        <button class="btn btn-outline-primary w-100" (click)="filterDate=''; filterWeek=''">Limpiar Filtros</button>
+      </div>
+    </div>
+    <div class="table-responsive rounded shadow-sm" style="background: #fff;">
+      <table class="table align-middle mb-0" style="background: #fff;">
+        <thead style="background: linear-gradient(90deg, #2563eb 0%, #60a5fa 100%); color: #fff;">
+        <tr>
+          <th>Tipo</th>
+          <th>Cuenta</th>
+          <th>Monto</th>
+          <th>Fecha</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let transaction of transactionsSorted" style="border-bottom: 1px solid #e3e6f0;">
+          <td class="fw-semibold text-primary">{{transaction?.transactionType}}</td>
+          <td>
+            <ng-container [ngSwitch]="transaction.transactionType.toLowerCase()">
+              <span *ngSwitchCase="'transferencia'" class="text-info">{{transaction.sourceAccount?.accountNumber}} → {{transaction.targetAccount?.accountNumber}}</span>
+              <span *ngSwitchCase="'retiro'" class="text-danger">- {{transaction.sourceAccount.accountNumber}}</span>
+              <span *ngSwitchCase="'depósito'" class="text-success">- {{transaction.sourceAccount.accountNumber}}</span>
+              <span *ngSwitchCase="'deposito'" class="text-success">- {{transaction.sourceAccount.accountNumber}}</span>
+              <span *ngSwitchDefault>-</span>
+            </ng-container>
+          </td>
+          <td class="fw-bold">{{transaction.sourceAccount.currency}}<span class="text-primary">{{transaction.amount}}</span></td>
+          <td>{{ transaction.date | date:'dd/MM/yyyy HH:mm' }}</td>
+          <td>
+            <span class="badge bg-gradient bg-primary bg-opacity-75" *ngIf="transaction.transactionType.toLowerCase() === 'transferencia' || transaction.transactionType.toLowerCase() === 'depósito' || transaction.transactionType.toLowerCase() === 'deposito'">Completada</span>
+            <span class="badge bg-gradient bg-danger bg-opacity-75" *ngIf="transaction.transactionType.toLowerCase() === 'retiro'">Completada</span>
+          </td>
+          <td>
+            <button class="btn btn-sm btn-outline-primary me-1" (click)="viewTransaction(transaction)">Ver</button>
+            <button class="btn btn-sm btn-outline-info" (click)="copyTransaction(transaction)">Copiar</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</div>

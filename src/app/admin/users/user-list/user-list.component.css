@@ -1,0 +1,105 @@
+
+/* app.component.css */
+.custom-container {
+  padding: 3rem 1rem; /* Padding general de 2rem arriba y abajo, 3rem a los lados */
+  margin: 0 auto; /* Centra el contenedor en la página */
+  max-width: 1200px; /* Ancho máximo para el contenedor */
+}
+
+/* app.component.css */
+.text-muted {
+  color: #6c757d;
+}
+
+.text-primary {
+  color: #007bff;
+}
+
+.font-weight-bold {
+  font-weight: 700;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+.top-50 {
+  top: 50%;
+}
+
+.translate-middle-y {
+  transform: translateY(-50%);
+}
+
+.ms-3 {
+  margin-left: 1rem;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
+.text-end {
+  text-align: right;
+}
+
+.card-header {
+  background-color: #f8f9fa;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.card-text {
+  font-size: 1rem;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f9f9f9;
+}
+
+.dropdown-menu {
+  min-width: 10rem;
+}
+.badge-custom {
+  font-size: 0.78rem; /* Aumenta el tamaño del texto */
+  padding: 0.15rem 0.35rem; /* Aumenta el padding */
+}
+.btn{
+  padding: 10px 20px;
+}
+/* app.component.css */
+.custom-dropdown {
+  border-radius: 0.5rem; /* Esquinas redondeadas */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  background-color: #f8f9fa; /* Fondo más claro */
+  padding: 0.5rem 0; /* Espaciado vertical */
+  min-width: 150px; /* Ancho mínimo de la lista */
+}
+
+.custom-dropdown .dropdown-item {
+  font-size: 1rem; /* Tamaño de fuente */
+  padding: 0.75rem 1rem; /* Padding más grande */
+  transition: background-color 0.2s ease-in-out; /* Transición suave */
+}
+
+.custom-dropdown .dropdown-item:hover {
+  background-color: #d5e9f4; /* Color de fondo al pasar el mouse */
+  color: #0c0c0c; /* Color del texto en hover */
+}
+
+.custom-dropdown .dropdown-item:active {
+  background-color: #0056b3; /* Fondo en click */
+  color: #fff; /* Color del texto en click */
+}
+
+.custom-dropdown .text-danger {
+  color: #dc3545 !important; /* Asegura que el texto rojo no cambie */
+}
+

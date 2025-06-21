@@ -1,0 +1,79 @@
+<div class="dashboard">
+  <!-- Encabezado -->
+  <header class="header">
+    <h1>Panel de Operador</h1>
+    <p>Bienvenido, {{ user?.profile?.name }}. Aquí tienes tus herramientas de trabajo.</p>
+  </header>
+
+  <!-- Estadísticas del Día -->
+  <section class="stats">
+    <div class="stat-card">
+      <h3>Transferencias</h3>
+      <p class="stat-value">{{resumen.transferencias.cantidad}}</p>
+      <p class="stat-description">Hoy</p>
+    </div>
+    <div class="stat-card">
+      <h3>Depósitos</h3>
+      <p class="stat-value">{{resumen.depositos.cantidad}}</p>
+      <p class="stat-description">Hoy</p>
+    </div>
+    <div class="stat-card">
+      <h3>Retiros</h3>
+      <p class="stat-value">{{resumen.retiros.cantidad}}</p>
+      <p class="stat-description">Hoy</p>
+    </div>
+    <div class="stat-card">
+      <h3>Beneficiarios</h3>
+      <p class="stat-value">{{totalBeneficiarios}}</p>
+      <p class="stat-description">Registrados</p>
+    </div>
+  </section>
+
+  <!-- Operaciones Recientes -->
+  <section class="recent-operations">
+    <h2>Operaciones Recientes</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>Tipo</th>
+        <th>Cuenta</th>
+        <th>Monto</th>
+        <th>Fecha</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let transaction of transactionsSorted">
+        <td>{{transaction?.transactionType}}</td>
+        <td>
+          <ng-container [ngSwitch]="transaction.transactionType.toLowerCase()">
+            <span *ngSwitchCase="'transferencia'">{{transaction.sourceAccount?.accountNumber}} → {{transaction.targetAccount?.accountNumber}}</span>
+            <span *ngSwitchCase="'retiro'">- {{transaction.sourceAccount?.accountNumber}}</span>
+            <span *ngSwitchCase="'depósito'">- {{transaction.sourceAccount?.accountNumber}}</span>
+            <span *ngSwitchCase="'deposito'">- {{transaction.sourceAccount?.accountNumber}}</span>
+            <span *ngSwitchDefault>-</span>
+          </ng-container>
+        </td>
+        <td>{{transaction.sourceAccount?.currency}}{{transaction?.amount}}</td>
+        <td>{{ transaction?.date | date:'dd/MM/yyyy HH:mm' }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Resumen del Día -->
+  <section class="summary">
+    <div class="summary-card">
+      <h3>Rendimiento del Día</h3>
+      <p>Transacciones Exitosas: <strong>98.5%</strong></p>
+      <p>Tiempo Promedio: <strong>2.3 min</strong></p>
+    </div>
+    <div class="summary-card">
+      <h3>Tipos de Operación</h3>
+      <ul>
+        <li>Depósitos: <strong>45 (35%)</strong></li>
+        <li>Retiros: <strong>38 (30%)</strong></li>
+        <li>Transferencias: <strong>44 (35%)</strong></li>
+      </ul>
+    </div>
+  </section>
+</div>

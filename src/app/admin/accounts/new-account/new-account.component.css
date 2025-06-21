@@ -1,0 +1,20 @@
+/* Estilos personalizados para mejorar la apariencia */
+.max-height-150 {
+  max-height: 150px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.input-group-text {
+  background-color: #f8f9fa;
+}
+
+.card-header {
+  background-color: #f8f9fa;
+}
+
+.card-body {
+  background-color: #ffffff;
+}

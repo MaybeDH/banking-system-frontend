@@ -1,0 +1,105 @@
+
+
+
+<div class="container my-5">
+  <!-- Título -->
+  <div class="mb-4">
+    <h1 class="h2 fw-bold text-primary">Mis Cuentas</h1>
+    <p class="text-muted">Visualiza y administra tus cuentas bancarias</p>
+  </div>
+  @if (accounts.length>0) {
+    <!-- Resumen de Saldos -->
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header bg-white border-bottom-0">
+        <h5 class="card-title d-flex align-items-center mb-0">
+          <i class="bi bi-credit-card me-2 text-primary fs-5"></i>
+          Saldo Total
+        </h5>
+        <small class="text-muted">Suma de todas tus cuentas</small>
+      </div>
+      <div class="card-body">
+        <div class="h3 fw-bold text-primary">${{totalBalance}}</div>
+        <p class="text-muted small mt-2">{{activeAccounts.length}} cuentas activas</p>
+      </div>
+    </div>
+
+    <!-- Detalle de Cuentas -->
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header bg-white border-bottom-0">
+        <h5 class="card-title mb-0">Detalle de Cuentas</h5>
+        <small class="text-muted">Información detallada de tus cuentas bancarias</small>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table align-middle">
+            <thead class="table-light">
+            <tr>
+              <th>Número de Cuenta</th>
+              <th>Tipo</th>
+              <th>Moneda</th>
+              <th>Saldo</th>
+              <th>Estado</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let account of accounts">
+              <td class="fw-medium">{{account.accountNumber}}</td>
+              <td><span class="badge bg-info text-dark">{{ account.type }}</span></td>
+              <td>{{ account.currency }}</td>
+              <td class="fw-medium">{{ account.currency }}{{account.balance}}</td>
+              <td><span class="badge bg-success">{{ account.status }}</span></td>
+
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Movimientos Recientes -->
+    <div class="card shadow-sm">
+      <div class="card-header bg-white border-bottom-0">
+        <h5 class="card-title mb-0">Movimientos Recientes</h5>
+        <small class="text-muted">Últimas transacciones en tus cuentas</small>
+      </div>
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center p-3 mb-2 rounded bg-light">
+          <div class="d-flex align-items-center gap-3">
+            <div class="rounded-circle bg-primary" style="width: 8px; height: 8px;"></div>
+            <div>
+              <p class="mb-0 fw-medium">Transferencia a Juan Pérez</p>
+              <small class="text-muted">2024-01-15</small>
+            </div>
+          </div>
+          <div class="fw-semibold text-danger">-$500.00</div>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center p-3 mb-2 rounded bg-light">
+          <div class="d-flex align-items-center gap-3">
+            <div class="rounded-circle bg-success" style="width: 8px; height: 8px;"></div>
+            <div>
+              <p class="mb-0 fw-medium">Depósito por nómina</p>
+              <small class="text-muted">2024-01-14</small>
+            </div>
+          </div>
+          <div class="fw-semibold text-success">+$3,200.00</div>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center p-3 rounded bg-light">
+          <div class="d-flex align-items-center gap-3">
+            <div class="rounded-circle bg-danger" style="width: 8px; height: 8px;"></div>
+            <div>
+              <p class="mb-0 fw-medium">Pago de servicios</p>
+              <small class="text-muted">2024-01-13</small>
+            </div>
+          </div>
+          <div class="fw-semibold text-danger">-$150.75</div>
+        </div>
+      </div>
+    </div>
+
+  }
+</div>
+@if (accounts.length==0){
+  <p>No tienes cuentas registradas.</p>
+}

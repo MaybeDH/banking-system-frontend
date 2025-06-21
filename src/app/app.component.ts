@@ -1,12 +1,25 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {NavigationEnd, Router, RouterOutlet} from '@angular/router';
+import {NavbarComponent} from './shared/navbar/navbar.component';
+import {FooterComponent} from './shared/footer/footer.component';
+import {SidebarComponent} from './shared/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent, SidebarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'myFirstApp';
+  isLoginPage = false;
+
+
+
+  constructor(private router:Router) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.isLoginPage = event.url.includes('auth/login');
+      }
+    })
+  }
 }

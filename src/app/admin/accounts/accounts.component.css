@@ -1,0 +1,10 @@
+/* Puedes incluir esto en styles.css si deseas personalizar aún más */
+
+table td,
+table th {
+  vertical-align: middle;
+}
+
+input[type="text"]::placeholder {
+  color: #aaa;
+}

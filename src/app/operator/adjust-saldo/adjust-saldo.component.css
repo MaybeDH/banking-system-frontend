@@ -1,0 +1,11 @@
+.card-header {
+  font-size: 1.1rem;
+}
+
+textarea {
+  resize: none;
+}
+
+.fw-medium {
+  font-weight: 500;
+}

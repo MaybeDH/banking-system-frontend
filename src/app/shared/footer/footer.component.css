@@ -1,0 +1,15 @@
+footer h5, footer h6 {
+  font-size: 0.875rem;
+}
+
+footer p, footer li {
+  font-size: 0.75rem;
+}
+
+footer .text-primary {
+  color: #2563eb; /* Tailwind's blue-600 */
+}
+
+footer .bg-light {
+  background-color: #f9fafb; /* similar to Tailwind bg-muted/50 */
+}

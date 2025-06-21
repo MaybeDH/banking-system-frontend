@@ -1,0 +1,43 @@
+<div class=" container mt-5">
+
+  <h1 class="fw-bold text-primary">Mis Beneficiarios</h1>
+  <p class="text-muted">Gestiona tu lista de beneficiarios para transferencias</p>
+
+  <button routerLink="new" class="btn btn-primary mb-3 float-end">+ Agregar Beneficiario</button>
+
+  <h3 class="mt-4">Lista de Beneficiarios Registrados</h3>
+
+  <table class="table table-striped table-hover table-bordered align-middle">
+    <thead class="table-blue">
+    <tr>
+<!--      <th>ID</th>-->
+      <th>Alias</th>
+      <th>Número de Cuenta</th>
+      <th>Moneda</th>
+      <th>Fecha Agregado</th>
+      <th>Agregado por</th>
+<!--      <th>Última Modificación</th>-->
+      <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let beneficiary of beneficiaries">
+      <ng-container *ngIf="!beneficiary.deleted">
+<!--        <td>{{ beneficiary.beneficiaryId }}</td>-->
+        <td>{{ beneficiary.alias || '-' }}</td>
+        <td>{{ beneficiary.account?.accountNumber || '-' }}</td>
+        <td>{{ beneficiary.account?.currency || '-' }}</td>
+        <td>{{ beneficiary.addDate | date:'dd/MM/yyyy' }}</td>
+        <td>{{ beneficiary.addUser || '-' }}</td>
+<!--        <td>{{ beneficiary.changeDate | date:'dd/MM/yyyy' }}</td>-->
+        <td>
+          <button class="btn btn-sm btn-outline-danger me-1" (click)="deleteBeneficiary(beneficiary.beneficiaryId)">Eliminar</button>
+          <button class="btn btn-sm btn-outline-primary" (click)="transferToBeneficiary(beneficiary.account?.accountId)">Transferir</button>
+        </td>
+      </ng-container>
+    </tr>
+    </tbody>
+  </table>
+
+
+</div>

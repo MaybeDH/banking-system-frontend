@@ -1,0 +1,130 @@
+<aside class="sidebar">
+  <div class="sidebar-container">
+    <!-- Encabezado del Sidebar -->
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <i class="bi bi-building"></i>
+      </div>
+      <div class="sidebar-title">
+        <h2>Banco Digital</h2>
+        <p>Panel </p>
+      </div>
+    </div>
+
+    <div class="sidebar-content">
+      <!-- Menú para Cliente -->
+      <nav *ngIf="isClient()" class="sidebar-nav">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/client/dashboard">
+              <i class="bi bi-grid"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/client/accounts">
+              <i class="bi bi-credit-card"></i>
+              <span>Mis cuentas</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/client/beneficiaries">
+              <i class="bi bi-people"></i>
+              <span>Beneficiarios</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/client/transfer">
+              <i class="bi bi-arrow-left-right"></i>
+              <span>Transferencias</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/client/profile">
+              <i class="bi bi-person"></i>
+              <span>Perfil</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Menú para Administrador -->
+      <nav *ngIf="isAdmin()" class="sidebar-nav">
+        <ul class="nav-list">
+          <!-- Panel Principal -->
+          <li class="nav-section">
+            <h6 class="section-title">Panel Principal</h6>
+            <a class="nav-link" routerLink="/admin/dashboard">
+              <i class="bi bi-grid"></i>
+              <span>Dashboard</span>
+            </a>
+            <a class="nav-link" routerLink="/admin/perfil">
+              <i class="bi bi-person"></i>
+              <span>Mi perfil</span>
+            </a>
+          </li>
+
+          <!-- Gestión de Usuarios -->
+          <li class="nav-section">
+            <h6 class="section-title">Gestión de Usuarios</h6>
+            <a class="nav-link" routerLink="/admin/users">
+              <i class="bi bi-people"></i>
+              <span>Usuarios</span>
+            </a>
+            <a class="nav-link" routerLink="/admin/users/new">
+              <i class="bi bi-person-plus"></i>
+              <span>Crear Usuario</span>
+            </a>
+            <a class="nav-link" routerLink="/admin/profiles">
+              <i class="bi bi-person-badge"></i>
+              <span>Perfiles</span>
+            </a>
+          </li>
+
+          <!-- Gestión de Cuentas -->
+          <li class="nav-section">
+            <h6 class="section-title">Gestión de Cuentas</h6>
+            <a class="nav-link" routerLink="/admin/accounts">
+              <i class="bi bi-bank"></i>
+              <span>Cuentas</span>
+            </a>
+            <a class="nav-link" routerLink="/admin/accounts/new">
+              <i class="bi bi-plus-circle"></i>
+              <span>Crear Cuenta</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Menú para Operador -->
+      <nav *ngIf="isOperator()" class="sidebar-nav">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/operator/dashboard">
+              <i class="bi bi-grid"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/operator/transactions">
+              <i class="bi bi-list-check"></i>
+              <span>Transacciones</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/operator/adjust-saldo">
+              <i class="bi bi-currency-dollar"></i>
+              <span>Ajuste de saldo</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Pie del Sidebar -->
+    <div class="sidebar-footer">
+      <p>© 2024 Banco Digital</p>
+      <p>Todos los derechos reservados</p>
+    </div>
+  </div>
+</aside>
